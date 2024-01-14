@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.AppKit" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#2E5DB5</item>
+        <item name="colorPrimaryVariant">@color/secondary_color</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/bottombar_background</item>
+        <item name="colorSecondaryVariant">@color/secondary_color</item>
+        <item name="colorOnSecondary">@color/app_color</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/statusbar_background_color</item>
+        <!-- Customize your theme here. -->
+        <item name="android:navigationBarColor">@color/bottom_nav_bar_color</item>
+        <item name="android:windowLightStatusBar" >false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="android:windowBackground">@color/main_background</item>
+        <item name="colorControlHighlight">@color/main_ripple_color</item>
+        <item name="sliderStyle">@style/SliderStyle</item>
+    </style>
+
+    <!-- App Kit Launch Screen -->
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/splash_background</item>
+        <item name="android:statusBarColor">@color/splash_background</item>
+        <item name="android:navigationBarColor">@color/splash_background</item>
+        <item name="android:windowLightStatusBar" >false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+    <!-- Bottomsheet Style ...Gives the bottom sheet the rounded corners -->
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+        <item name="colorControlHighlight">@color/primary_text_color</item>
+    </style>
+    <!-- Used with the bottom sheet styling -->
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="SliderStyle" parent="Widget.MaterialComponents.Slider">
+        <item name="materialThemeOverlay">@style/SliderThemeOverlay</item>
+        <item name="labelStyle">@style/SliderTooltip</item>
+        <item name="trackColor">@color/switch_track_color</item>
+        <item name="trackColorInactive">@color/switch_thumb_inactve_color</item>
+    </style>
+
+    <style name="SliderThemeOverlay" parent="">
+        <item name="colorPrimary">@color/app_color</item>
+        <item name="colorOnPrimary">@color/switch_track_color</item>
+        <item name="colorOnSurface">@color/switch_track_color</item>
+    </style>
+
+    <style name="SliderTooltip" parent="Widget.MaterialComponents.Tooltip">
+        <item name="android:textAppearance">@style/SliderTextAppearance</item>
+        <item name="backgroundTint">@color/primary_color</item>
+    </style>
+
+    <style name="SliderTextAppearance" parent="TextAppearance.MaterialComponents.Tooltip">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- FABS -->
+    <style name="mainFab">
+        <item name="backgroundTint">@color/main_fab_color</item>
+        <item name="tint">@color/white</item>
+        <item name="rippleColor">@color/white</item>
+        <item name="elevation">0dp</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin</item>
+    </style>
+
+
+    <style name="mainExtFab">
+        <item name="backgroundTint">@color/main_fab_color</item>
+        <item name="fabSize">mini</item>
+        <item name="rippleColor">@color/main_ripple_color</item>
+        <item name="iconTint">@color/primary_text_color</item>
+        <item name="elevation">@dimen/default_button_elevation</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:layout_marginStart">@dimen/default_small_padding</item>
+        <item name="android:layout_marginEnd">@dimen/default_small_padding</item>
+        <item name="android:layout_marginTop">@dimen/default_small_padding</item>
+        <item name="android:layout_marginBottom">@dimen/default_padding</item>
+        <item name="android:gravity">center</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <!-- FONTS -->
+    <style name="fontIntroFancyWelcome">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="fontFamily">@font/awake_the_beauty</item>
+    </style>
+
+    <style name="fontIntroWelcome">
+        <item name="android:textSize">38sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="fontFamily">@font/kelso_bold</item>
+    </style>
+
+    <style name="fontLarge_bld">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:paddingTop">@dimen/default_padding</item>
+        <item name="android:paddingBottom">@dimen/default_padding</item>
+        <item name="android:paddingStart">@dimen/default_padding</item>
+        <item name="android:paddingEnd">@dimen/default_padding</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="fontLarge_reg">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="fontMedium_bld">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="fontMedium_reg">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="fontSmall_reg">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:padding">@dimen/default_small_padding</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="fontSmaller_italic">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:padding">@dimen/default_small_padding</item>
+        <item name="fontFamily">@font/roboto_thin_italic</item>
+    </style>
+
+    <style name="fontDebugTerminal">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <!-- ======================= CARDVIEWS =============================== -->
+    <style name="cardviewDefaultStyle">
+        <item name="cardCornerRadius">@dimen/cardview_corners</item>
+        <item name="cardElevation">@dimen/cardview_default_elevation</item>
+        <item name="cardBackgroundColor">@color/cardview_background</item>
+        <item name="android:layout_marginStart">@dimen/default_small_padding</item>
+        <item name="android:layout_marginBottom">@dimen/default_small_padding</item>
+        <item name="android:layout_marginTop">@dimen/default_small_padding</item>
+        <item name="android:layout_marginEnd">@dimen/default_small_padding</item>
+    </style>
+
+    <style name="cardviewChatStyle">
+        <item name="cardCornerRadius">@dimen/cardview_corners</item>
+        <item name="cardElevation">@dimen/cardview_default_elevation</item>
+        <item name="cardBackgroundColor">@color/cardview_background</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginBottom">@dimen/default_padding</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin</item>
+        <item name="android:longClickable">true</item>
+    </style>
+
+    <style name="cardviewButtonStyle">
+        <item name="cardCornerRadius">@dimen/cardview_corners</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardBackgroundColor">@color/cardview_background</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:layout_marginStart">@dimen/default_small_padding</item>
+        <item name="android:layout_marginEnd">@dimen/default_small_padding</item>
+        <item name="android:layout_marginTop">@dimen/default_small_padding</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <style name="cardviewSettingsStyle">
+        <item name="cardCornerRadius">@dimen/cardview_corners_heavy</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardBackgroundColor">@color/cardview_background</item>
+        <item name="android:layout_marginStart">@dimen/default_small_padding</item>
+        <item name="android:layout_marginEnd">@dimen/default_small_padding</item>
+        <item name="android:layout_marginTop">@dimen/default_small_padding</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <style name="cardviewBottomBar">
+        <item name="cardCornerRadius">@dimen/bottombar_corners</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardBackgroundColor">@color/bottombar_background</item>
+    </style>
+
+    <!-- Input Field -->
+    <style name="inputFieldStyleSquared" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/cardview_background</item>
+        <item name="boxCornerRadiusTopStart">@dimen/inputfield_sq_corners</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/inputfield_sq_corners</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/inputfield_sq_corners</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/inputfield_sq_corners</item>
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxStrokeColor">@color/input_stroke</item>
+        <item name="hintTextColor">@color/primary_text_color</item>
+        <item name="placeholderTextColor">@color/primary_text_color</item>
+        <item name="iconTint">@color/primary_text_color</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:layout_margin">@dimen/default_small_padding</item>
+        <item name="android:textColorHint">@color/primary_text_color</item>
+        <item name="helperTextTextColor">@color/primary_text_color</item>
+        <item name="colorControlActivated">@color/primary_text_color</item>
+        <item name="endIconMode">clear_text</item>
+    </style>
+
+
+    <style name="makeClickable">
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+</resources>

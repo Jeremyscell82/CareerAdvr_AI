@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_background">#212121</color>
+    <color name="main_fab_color">#4F38A4</color>
+    <color name="cardview_background">#383838</color>
+    <color name="primary_text_color">#E2E2E2</color>
+    <color name="secondary_text_color">#B6B6B6</color>
+</resources>

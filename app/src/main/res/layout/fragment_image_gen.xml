@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/splash_background">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/img_gen_back_fab"
+        style="@style/mainFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Back Button"
+        android:src="@drawable/ic_back"
+        app:backgroundTint="@color/main_background"
+        app:elevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/img_gen_download_fab"
+        style="@style/mainFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Save Button"
+        android:src="@drawable/ic_download"
+        app:backgroundTint="@color/main_background"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toStartOf="@id/img_gen_share_fab"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/img_gen_share_fab"
+        style="@style/mainFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Back Button"
+        android:src="@drawable/ic_share"
+        app:backgroundTint="@color/main_background"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/img_gen_title"
+        style="@style/fontMedium_bld"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_gen_back_fab"
+        tools:text="Title here" />
+
+    <com.jsibbold.zoomage.ZoomageView
+        android:id="@+id/img_gen_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_margin="@dimen/default_margin"
+        android:scaleType="centerInside"
+        tools:src="@drawable/app_icon"
+        app:layout_constraintBottom_toTopOf="@id/img_gen_input_section_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_gen_title"
+
+        app:zoomage_restrictBounds="false"
+        app:zoomage_animateOnReset="true"
+        app:zoomage_autoResetMode="UNDER"
+        app:zoomage_autoCenter="true"
+        app:zoomage_zoomable="true"
+        app:zoomage_translatable="true"
+        app:zoomage_minScale="0.6"
+        app:zoomage_maxScale="8"
+        />
+
+    <!-- PROMPT QUESTION SCREEN -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/img_gen_input_section_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/img_gen_send_fab"
+            style="@style/mainFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Action Button"
+            android:rotation="-45"
+            android:src="@drawable/ic_send"
+            app:elevation="@dimen/default_button_elevation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/img_gen_input_layout"
+            style="@style/inputFieldStyleSquared"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="@dimen/default_margin"
+            android:elevation="@dimen/default_button_elevation"
+            app:endIconMode="clear_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_gen_send_fab"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/img_gen_input_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionSend"
+                android:inputType="textMultiLine|textAutoCorrect"
+                android:maxLines="8"
+                android:scrollHorizontally="false"
+                android:textColor="@color/primary_text_color"
+                android:textColorHint="#546E7A"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="18sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- PRE MESSAGE SCREEN, IMG -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/img_gen_pre_message_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_gen_title"
+        app:layout_constraintBottom_toTopOf="@id/img_gen_input_section_layout"
+
+        >
+
+        <ImageView
+            android:id="@+id/img_gen_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintWidth_max="200dp"
+            android:layout_marginTop="@dimen/default_margin"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/img_gen_pre_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/fontMedium_reg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_gen_img"
+            app:layout_constraintWidth_max="300dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

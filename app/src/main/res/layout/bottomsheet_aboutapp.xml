@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:minHeight="600dp"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    android:background="@drawable/background_bottomsheet">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bottomsheet_fab_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        style="@style/mainFab"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="0dp"
+        android:src="@drawable/ic_close"
+        />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/bottomsheet_chape"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bottomsheet_fab_close"
+        app:layout_constraintDimensionRatio="1:1"
+        app:lottie_rawRes="@raw/lottie_chape_hello"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        />
+
+    <TextView
+        android:id="@+id/about_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/fontMedium_reg"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bottomsheet_chape"
+        android:text="@string/intro_landing_body"
+        android:layout_margin="@dimen/default_margin"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/splash_nav_graph"
+    app:startDestination="@id/introFragmentLanding">
+
+    <fragment
+        android:id="@+id/introFragmentLanding"
+        android:name="com.lloydsbyte.careeradvr_ai._intro.IntroFragmentLanding"
+        android:label="IntroFragmentLanding"
+        app:enterAnim="@anim/slide_in_down"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/fade_out"
+        >
+
+        <action
+            android:id="@+id/action_intro_to_terms"
+            app:destination="@id/introFragmentTerms"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_down"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/introFragmentTerms"
+        android:name="com.lloydsbyte.careeradvr_ai._intro.IntroFragmentTerms"
+        android:label="introFragmentTerms" >
+
+        <action
+            android:id="@+id/action_terms_to_profile"
+            app:destination="@id/introFragmentProfile"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/fade_out"
+            />
+
+    </fragment>
+    <fragment
+        android:id="@+id/introFragmentSignIn"
+        android:name="com.lloydsbyte.careeradvr_ai._intro.IntroFragmentSignIn"
+        android:label="IntroFragmentOnboarding" >
+        <action
+            android:id="@+id/action_signin_to_newuser"
+            app:destination="@id/introNewUserFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/fade_out"
+            />
+
+        <action
+            android:id="@+id/action_signin_to_promo"
+            app:destination="@id/introPromoFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/fade_out"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/introNewUserFragment"
+        android:name="com.lloydsbyte.careeradvr_ai._intro.IntroNewUserFragment"
+        android:label="IntroNewUserFragment" >
+    </fragment>
+    <fragment
+        android:id="@+id/introFragmentProfile"
+        android:name="com.lloydsbyte.careeradvr_ai._intro.IntroFragmentProfile"
+        android:label="IntroFragmentProfile" >
+        <action
+            android:id="@+id/action_profile_to_signin"
+            app:destination="@id/introFragmentSignIn"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/fade_out"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/introPromoFragment"
+        android:name="com.lloydsbyte.careeradvr_ai._intro.IntroPromoFragment"
+        android:label="IntroPromoFragment" />
+
+</navigation>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <!-- HOME FRAGMENT -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.lloydsbyte.careeradvr_ai.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/fade_out"/>
+
+        <action
+            android:id="@+id/action_homeFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/fade_out"/>
+
+        <action
+            android:id="@+id/action_homeFragment_to_proFragment"
+            app:destination="@id/proSpecificFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/fade_out"/>
+
+        <action
+            android:id="@+id/action_homeFragment_to_imgGenFragment"
+            app:destination="@id/imageGenFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/fade_out"/>
+
+        <action
+            android:id="@+id/action_homeFragment_to_historyFragment"
+            app:destination="@id/historyFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/fade_out"/>
+
+    </fragment>
+
+    <!-- PROFESSIONS SELECTION FRAGMENT -->
+    <fragment
+        android:id="@+id/proSpecificFragment"
+        android:name="com.lloydsbyte.careeradvr_ai.proSpecific.ProSpecificFragment"
+        android:label="ProSpecificFragment" >
+        <action
+            android:id="@+id/action_proFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/fade_out"
+            app:popUpTo="@id/homeFragment"/>
+    </fragment>
+
+    <!-- CHAT FRAGMENT -->
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.lloydsbyte.careeradvr_ai.chat.ChatFragment"
+        android:label="ChatFragment"/>
+
+    <!-- IMAGE GENERATOR FRAGMENT -->
+    <fragment
+        android:id="@+id/imageGenFragment"
+        android:name="com.lloydsbyte.careeradvr_ai.image_gen.ImageGenFragment"
+        android:label="ImageGenFragment" />
+
+    <!-- SETTINGS FRAGMENT -->
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.lloydsbyte.careeradvr_ai.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+
+
+
+
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.lloydsbyte.careeradvr_ai.history.HistoryFragment"
+        android:label="HistoryFragment" >
+        <action
+            android:id="@+id/action_historyFragment_to_historyConvoFragment"
+            app:destination="@id/historyConvoFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_down"/>
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/historyConvoFragment"
+        android:name="com.lloydsbyte.careeradvr_ai.history.HistoryConversationFragment"
+        android:label="HistoryPromptFragment" />
+
+
+
+</navigation>

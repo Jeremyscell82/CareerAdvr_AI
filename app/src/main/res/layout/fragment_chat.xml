@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/splash_background">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/chat_back_fab"
+        style="@style/mainFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Back"
+        android:src="@drawable/ic_back"
+        app:elevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/chat_menu_fab"
+        style="@style/mainFab"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/share"
+        android:src="@drawable/ic_menu"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/chat_title"
+        style="@style/fontSmall_reg"
+        android:textStyle="bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:layout_marginStart="@dimen/default_side_margins"
+        app:layout_constraintStart_toEndOf="@id/chat_back_fab"
+        app:layout_constraintEnd_toStartOf="@id/chat_menu_fab"
+        app:layout_constraintTop_toTopOf="@id/chat_back_fab"
+        app:layout_constraintBottom_toBottomOf="@id/chat_back_fab"
+        tools:text="Title here" />
+
+    <TextView
+        android:id="@+id/chat_cost"
+        style="@style/fontSmaller_italic"
+        android:textSize="12sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:paddingStart="@dimen/default_padding"
+        app:layout_constraintStart_toEndOf="@id/chat_back_fab"
+        app:layout_constraintEnd_toStartOf="@id/chat_menu_fab"
+        app:layout_constraintTop_toBottomOf="@id/chat_title"
+        tools:text="@string/chat_convo_cost"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chat_back_fab"
+        app:reverseLayout="false"
+        android:paddingBottom="@dimen/bottombar_padding"
+        android:clipToPadding="false"
+        />
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/chat_reset_fab"
+        style="@style/mainExtFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_reset"
+        android:visibility="gone"
+        app:icon="@drawable/ic_reset"
+        app:layout_constraintBottom_toTopOf="@id/chat_input_section_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- PROMPT QUESTION SCREEN -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chat_input_section_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/chat_config_fab"
+            style="@style/mainFab"
+            android:layout_marginBottom="@dimen/default_small_padding"
+            app:fabSize="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Back Button"
+            android:src="@drawable/ic_tune"
+            app:elevation="@dimen/default_button_elevation"
+            app:layout_constraintBottom_toTopOf="@id/chat_input_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/chat_send_fab"
+            style="@style/mainFab"
+            android:layout_marginBottom="@dimen/default_small_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Action Button"
+            android:rotation="-45"
+            android:src="@drawable/ic_send"
+            app:elevation="@dimen/default_button_elevation"
+            app:layout_constraintBottom_toTopOf="@id/chat_input_layout"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/chat_input_layout"
+            style="@style/inputFieldStyleSquared"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="@dimen/default_margin"
+            android:elevation="@dimen/default_button_elevation"
+            app:endIconMode="clear_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/chat_input_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine|textAutoComplete|textCapSentences"
+                android:maxLines="8"
+                android:scrollHorizontally="false"
+                android:textColor="@color/primary_text_color"
+                android:textColorHint="#546E7A"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="18sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- PRE MESSAGE SCREEN, IMG -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chat_pre_message_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/chat_input_section_layout"
+        android:visibility="gone"
+        >
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/chat_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintWidth_max="200dp"
+            android:layout_marginTop="@dimen/default_margin"
+            android:visibility="visible"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/lottie_chat_loading"
+            />
+
+        <TextView
+            android:id="@+id/chat_pre_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/fontMedium_reg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chat_img"
+            app:layout_constraintWidth_max="300dp"
+            android:gravity="center_horizontal"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

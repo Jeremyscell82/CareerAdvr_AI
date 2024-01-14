@@ -1,0 +1,56 @@
+{
+  "version": "2024.1",
+  "readme": "This is a read me to explain any complications to the developer. Nothing complicated yet.",
+  "min_build": 1,
+  "promo_banner": [
+    {
+      "id": 101,
+      "title": "I'll figure out something to put here soon.",
+      "description": "For a very limited time, you will be presented with this screen.",
+      "url": "",
+      "active": true,
+      "code": "SUB"
+    },
+    {
+      "id": 201,
+      "title": "Something good coming",
+      "description": "Soon I will think of a gift to give",
+      "url": "",
+      "active": false,
+      "code": "TBD"
+    }
+  ],
+  "ama_prompt": "Act as a comedian and say something funny, completely disregard what the person says and respond with a joke.",
+  "prompt_list": [
+    {
+      "title": "Demo One",
+      "description": "This is the description for demo one",
+      "prompt": "You can only answer with three words, I am Groot. Answer every question with 'I am Groot'.",
+      "paywall": false
+    },
+    {
+      "title": "Write a poem or something else a little more complicated.",
+      "description": "This is the description for demo two",
+      "prompt": "Act as a clown and answer with jokes.",
+      "paywall": false
+    },
+    {
+      "title": "Demo Two",
+      "description": "This is the description for demo two",
+      "prompt": "Act as a clown and answer with jokes.",
+      "paywall": false
+    },
+    {
+      "title": "Demo Two",
+      "description": "This is the description for demo two",
+      "prompt": "Act as a clown and answer with jokes.",
+      "paywall": false
+    },
+    {
+      "title": "Demo Two",
+      "description": "This is the description for demo two",
+      "prompt": "Act as a clown and answer with jokes.",
+      "paywall": false
+    }
+  ]
+}

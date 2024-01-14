@@ -1,0 +1,326 @@
+<resources>
+    <string name="app_name">AccuBooks AI</string>
+    <string name="bot_name">Janell</string>
+    <string name="company_name">LloydsByte LLC</string>
+    <string name="default_notification_channel_id">LLOYDSBYTE.APPKIT-CHATGPT</string>
+
+    <!-- VERSION -->
+    <string name="version_title">What\'s new in version %s</string>
+    <string name="version_message">Everything!\nThis is an early version and many changes are coming!</string>
+
+    <!-- FORCE UPDATE -->
+    <string name="force_update_title">A new update is available</string>
+    <string name="force_update_message">Please update the app in order to continue to use it.</string>
+
+    <!-- AI Prompts -->
+    <string name="prompt_intro">The clients name is %s, they are %s years old. </string>
+
+    <!-- INTRO / ON BOARDING SECTION -->
+    <string name="intro_title">Hello I\'m</string>
+    <string name="intro_landing_body">I am an Artificial Intelligence based chat bot designed and built by Lloyd\'sByte LLC and powered by OpenAI\'s ChatGPT.</string>
+    <string name="intro_created_by">A Lloyd\'sByte Creation</string>
+    <string name="intro_next_button">Next</string>
+    <string name="intro_landing_terms">With that being said, I want to make sure you are aware of my limitations. I can not control ChatGPT or it\'s responses, I have created carefully curated phrases to help you achieve the finest responses from ChatGPT. This application was created with the  intention to help assist you and NOT to used as a replacement for a professional accountant.</string>
+    <string name="intro_landing_terms_html">To learn more about ChatGPT\'s terms and policies click <a href="https://openai.com/policies">Here</a></string>
+    <string name="intro_terms_understood">I understand and agree the developer is not liable.</string>
+    <string name="intro_profile_title">But first…</string>
+    <string name="intro_profile_body">I will need to know some information about you, just your name and age to better assist you.</string>
+    <string name="intro_profile_name">Name:</string>
+    <string name="intro_profile_age">Age:</string>
+    <string name="intro_signin_header">One last thing…</string>
+    <string name="intro_signin_message">Chap-E requires a Google account to keep track of usage limits.\nTo continue please sign in.</string>
+    <string name="intro_signin_disclaimer">**I do not collect any data from you nor do I store any personal information on any cloud.</string>
+    <string name="intro_signin_button">Sign in</string>
+    <string name="intro_skip_button">Skip</string>
+    <string name="intro_newuser_title">Congratulation!</string>
+    <string name="intro_newuser_message">Since you are an early adopter, you will get free lifetime access to all the app\'s features! Thank you for being a part of the early adopters!</string>
+    <string name="intro_newuser_letgo">Let\'s Get Started!</string>
+
+
+    <!-- NAV ITEMS -->
+    <string name="nav_history">History</string>
+    <string name="nav_home">Home</string>
+
+    <!-- HOME SCREEN -->
+    <string name="home_welcome_text">Hi %s,</string>
+    <string name="home_welcome_two">How can I help you today?</string>
+
+    <!-- CHAT -->
+    <string name="chat_loading">Thinking…</string>
+    <string name="chat_basic_title">Ask me anything!</string>
+    <string name="chat_default_prompt">You are an excellent chatbot, you are funny and love to tell jokes.</string>
+    <string name="chat_pro_title">Speaking to a %s bot</string>
+    <string name="chat_convo_cost">Conversation Cost: %s</string>
+
+    <string name="chat_model">Chat Model</string>
+    <string-array name="model_options">
+        <item>GPT 3.5 Turbo</item>
+        <item>GPT 4.0</item>
+        <item>GPT 4.0 Turbo</item>
+    </string-array>
+
+    <string name="home_new_chat">Start\nnew chat</string>
+    <string name="home_new_chat_title">Ask me anything</string>
+    <string name="home_new_chat_hint">Enter question here</string>
+
+    
+    <!-- Generate Image Info -->
+    <string name="home_create_img">Create\nnew image</string>
+    <string name="home_create_img_title">Generate an image from your words</string>
+    <string name="home_create_img_hint">Describe the image here</string>
+
+    <!-- Profession Specific -->
+    <string name="home_pro_specific">Subject Specific Chats</string>
+    <string name="home_pro_personal">Personal</string>
+    <string name="home_pro_business">Business</string>
+
+    <!-- Legal Strings -->
+    <string name="pro_legal_disclaimer">Using the GPT Legal Advisor Bot means you are only accessing legal information, not legal advice. No attorney-client relationship is established by using the bot, nor with its creators. This chatbot is not a replacement for expert legal advice and users should always seek the counsel of a licensed attorney to handle particular legal situations. The information provided by the bot, while aiming to be accurate, full, and timely, is not guaranteed as such and can be altered without prior notification.\nUtilizing the services of the GPT Legal Advisor Bot implies acceptance of all risks related to its usage, which includes potential inaccuracies or inconsistencies in the information and its unsuitability to your personal legal circumstances. Any negative outcomes, including damages, losses, or costs, experienced as a consequence of using the application or trusting the information provided are not the responsibility of the bot\'s creators.\nWhen it comes to legal actions, always proceed with caution, utilize your personal judgment, and, if required, consult with a professional legal advisor.</string>
+    <string name="pro_legal_question_template">I need help with a %s</string>
+    <string name="pro_legal_options_title">What type of law help do you need?</string>
+    <string-array name="pro_legal_options">
+        <item>Family law matter</item>
+        <item>Contract dispute</item>
+        <item>Health related issue</item>
+        <item>Accident claim</item>
+        <item>Criminal law advice</item>
+        <item>Injury claim</item>
+        <item>Work related issue</item>
+        <item>Traffic violation</item>
+        <item>Benefits claim</item>
+        <item>Estates and wills issue</item>
+        <item>Money related issue</item>
+    </string-array>
+
+    <string name="pro_chef_question_template">I need help with %s</string>
+    <string name="pro_generic_options_title">What kind of help do you need?</string>
+    <string-array name="pro_chef_options">
+        <item>A Recipe</item>
+        <item>Meal ideas</item>
+        <item>Allergy concerns</item>
+        <item>Cooking advice</item>
+        <item>Ingredient alternatives</item>
+    </string-array>
+
+    <string-array name="pro_handyman_options">
+        <item>Repair</item>
+        <item>Addition</item>
+        <item>Modification</item>
+        <item>General information</item>
+    </string-array>
+
+
+    <!-- History -->
+    <string name="home_saved_chats">View\nSaved Chats</string>
+    <string name="history_delete_title">Confirm Delete</string>
+    <string name="history_delete_message">This will permanently delete the %s conversation.</string>
+    <string name="history_delete">Delete Conversation</string>
+
+    <!---========= SETTINGS ============-->
+    <string name="settings_version">%s (%d)</string>
+
+    <string name="settings_temp">Temperature</string>
+    <string name="settings_temp_subtitle">AI\'s Creativity</string>
+    <!-- Temp More Info -->
+    <string name="chat_moreinfo_title">What is temperature</string>
+    <string name="chat_moreinfo_subtitle">What sampling temperature to use, between 0.1 and 1.\nHow should I set the temperature parameter?\n\n
+Lower values for temperature result in more consistent outputs, while higher values generate more diverse and creative results. Select a temperature value based on the desired trade-off between coherence and creativity for your specific application.\nsource: OpenAI.com</string>
+
+    <string name="settings_upgrade_title">Upgrade Your Experience</string>
+    <string name="settings_upgrade_rm_ads">Remove Ads</string>
+    <string name="settings_upgrade_rm_ads_subtitle">Remove advertising from your experience and unlock all professions</string>
+    <string name="settings_upgrade_subscribe">Subscribe</string>
+    <string name="settings_upgrade_subscribe_subtitle">Subscribe and get ad-free access to all professions and double your usage limit</string>
+
+    <string name="settings_profile_title">Profile</string>
+    <string name="settings_profile_name">Name</string>
+    <string name="settings_profile_name_subtitle">Change your name from %s</string>
+    <string name="settings_profile_age">Age</string>
+    <string name="settings_profile_age_subtitle">Change your age from %s</string>
+    <string name="settings_profile_membership">Membership</string>
+    <string name="settings_profile_status">Membership: %s</string>
+    <string name="settings_profile_usage_limit">Usage Limit</string>
+    <string name="settings_profile_usage_status">Used: %s</string>
+
+    <string name="settings_rate">Rate App</string>
+    <string name="settings_rate_subtitle">Let the world know how you feel</string>
+    <string name="settings_share">Share App</string>
+    <string name="settings_share_subtitle">Send others a link to download AccuBooks AI</string>
+    <string name="settings_about">About AccuBooks AI</string>
+    <string name="settings_about_subtitle">Learn more about the developer and this app</string>
+    <string name="settings_about_message">About this…\n\nAccuBooks AI was designed and created by LloydsByte LLC to help get professional grade answers at a reasonable cost. What started off as an personal project, slowly became something I want to share with others.\n\nSpecial thanks:\nEarly Adopters who helped fine tune the app.</string>
+    <string name="settings_special_thanks">Special thanks</string>
+    <string name="settings_special_subitle">Saying a special thank you to those who tested Chap-E</string>
+    <string name="settings_contact">Contact Us</string>
+    <string name="settings_contact_subtitle">Tell us something you enjoy or even dislike</string>
+
+    <string name="settings_debug_token_usage">Tokens Used</string>
+    <string name="settings_debug_membership">Switch Membership</string>
+    <string-array name="settings_debug_memberships">
+        <item>FREE</item>
+        <item>PAID</item>
+        <item>SUB</item>
+        <item>LIFE</item>
+    </string-array>
+    <string name="settings_debug_delete_account">Delete Account</string>
+    <string name="settings_debug_delete_subtitle">Deletes and restarts the application</string>
+    <string name="settings_debug_reset_usage">Reset Usage</string>
+    <string name="settings_debug_reset_subtitle">Resets the per day limit</string>
+    <string name="settings_debug_misc">Misc</string>
+
+
+
+    <string name="settings_tokens_header">Tokens Used (for testing)</string>
+    <string name="settings_tokens_subtitle">Tokens Used %s</string>
+
+    <string name="settings_stream">Stream</string>
+    <string name="settings_stream_subtitle">Continuous Conversations</string>
+    <string name="settings_signin">Sign In</string>
+    <string name="settings_signin_subtitle">Sign in to track tokens</string>
+    <string name="settings_signout">Sign Out</string>
+    <string name="settings_signout_subtitle">Sign out of your account</string>
+    <string name="settings_purchase">Purchase Tokens</string>
+    <string name="settings_purchase_subtitle">Purchase tokens and start chatting today!</string>
+
+
+    <string name="settings_contact_report">Report an issue</string>
+
+    <string name="settings_debug_panel">Debug Panel</string>
+    <string name="settings_debug_panel_subtitle">Report a bug</string>
+    <string name="settings_debug_tokens">Add Tokens</string>
+    <string name="settings_debug_tokens_subtitle">Add %s Tokens</string>
+    <string name="settings_debug_tokens_na">Free tokens not available today</string>
+    <string name="settings_debug_clear_tokens">Clear tokens</string>
+    <string name="settings_debug_clear_subtitle">Reset your tokens to zero</string>
+    <string name="settings_debug_clear_app">Clear App</string>
+    <string name="settings_debug_clear_app_subtitle">Erase app and restart</string>
+
+
+
+
+
+    <!--====================== ERROR MESSAGES ===========================-->
+    <string name="error_chat_response">Out to lunch, please try again later. (ERROR:109)</string>
+
+
+
+
+
+
+
+
+    <string name="nav_settings">Settings</string>
+    <string name="nav_debug">Debug</string>
+    
+    <!-- Home -->
+    <string name="home_reset">Reset</string>
+    <string name="home_share">Share</string>
+
+    <!-- History -->
+    <string name="history_title">Saved Chats</string>
+
+    
+
+    <!-- Settings -->
+    <string name="settings_account_header">Account</string>
+    <string name="settings_account_signout">Sign out</string>
+    <string name="settings_account_signin">Sign in</string>
+    <string name="settings_account_buy_tokens">Buy Tokens</string>
+    <string name="settings_account_clear_history">Clear History</string>
+    <string name="settings_app_header">App</string>
+    <string name="settings_app_rate">Rate App</string>
+    <string name="settings_app_about">About App</string>
+    <string name="settings_contact_us">Contact Request</string>
+
+    <string name="settings_app_add_tokens">Add Tokens</string>
+    <string name="settings_app_clear_tokens">Clear Tokens</string>
+
+
+
+    <string name="settings_feedback_title">Feedback</string>
+    <string name="settings_about_title">About</string>
+    <string name="settings_about_developer">About Developer</string>
+    <string name="settings_about_app">About App</string>
+    <string name="settings_rate_app">Rate App</string>
+    <string name="settings_share_app">Share App</string>
+
+    <string name="settings_more">More apps from developer</string>
+
+
+    <!-- PERMISSION -->
+    <string name="permissions_dialog_title">Request Permission</string>
+    <string name="location_permission_dialog_message">Location access is required to use this feature. You can update the app\'s location access from your device settings.</string>
+    <string name="location_dialog_title">Permission Needed</string>
+    <string name="location_dialog_message">It looks like we do not have your location permission.</string>
+    <string name="location_dialog_pos">Grant</string>
+    <string name="location_dialog_neg">Deny</string>
+    <!-- Location Not Enabled DIalog -->
+    <string name="location_enable_dialog_title">Location is not enabled</string>
+    <string name="location_enable_dialog_message">Please enable your location</string>
+    <string name="location_enable_dialog_pos">Ok</string>
+
+    <!-- GCM - PUSH NOTIFICATIONS -->
+    <string name="notification_permission_title">Would you like Notifications?</string>
+    <string name="notification_permission_message">We will only use notifications to inform you of stuff. </string>
+    <string name="notification_permission_ok">OK</string>
+    <string name="notification_permission_cancel">No Thanks</string>
+
+    <!-- DEBUG SCREENS -->
+    <string name="debug_clear">Clear</string>
+    <string name="debug_tbd">tbd</string>
+    <string name="debug_core">Test Core Components</string>
+    <string name="debug_network">Test Network Components</string>
+    <string name="debug_database">Read database results</string>
+    <string name="debug_signin">Sign in</string>
+    <string name="debug_signout">Sign out</string>
+    <string name="debug_gpt">Test out Chat Gpt</string>
+    <string name="debug_purchase">Test out IAP</string>
+
+    <!-- Chat GPT -->
+    <string name="gpt_ask_here">Ask me Anything</string>
+    <string name="share">Share</string>
+    <string name="reset">Reset</string>
+    <string name="gpt_response">You asked:\n%1$s\n\nMy answer:\n%2$s</string>
+    <!-- Config Section -->
+    <string name="gpt_token_max">Max Tokens</string>
+    <string name="gpt_convo_continuation">Continuation</string>
+    <string name="gpt_model">Model Selected %s</string>
+    <string-array name="gpt_model_options">
+        <item>gpt-4</item>
+        <item>gpt-4-0314</item>
+        <item>gpt-4-32k</item>
+        <item>gpt-4-32k-0314</item>
+        <item>gpt-3.5-turbo</item><!-- Default -->
+        <item>gpt-3.5-turbo-0301</item>
+    </string-array>
+    <string name="gpt_temp">Temperature</string>
+    <string name="gpt_language">Select a language for your responses</string>
+    <string name="gpt_language_selected">%s selected</string>
+
+    <!-- SEND IT -->
+    <string name="settings_feedback_no_email_title">No Email Detected</string>
+    <string name="settings_feedback_no_email">No email detected, send your feedback to \nJeremyLloyd@LloydsByte.com</string>
+
+
+
+    <!-- DEBUG -->
+    <string-array name="debug_selectable_array">
+        <item>Item one</item>
+        <item>Item two</item>
+        <item>Item three</item>
+        <item>Item four</item>
+        <item>Item five</item>
+        <item>Item six</item>
+        <item>Item seven</item>
+        <item>Item eight</item>
+        <item>Item nine</item>
+        <item>Item ten</item>
+    </string-array>
+    <string name="debug_purchase_title">Here are the items available</string>
+
+
+    <string name="demo_title">Chicken recipe</string>
+    <string name="demo_long_copy">Lorem ipsum dolor  amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+
+</resources>

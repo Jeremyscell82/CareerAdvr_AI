@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/landing_welcome_two"
+        style="@style/fontIntroWelcome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_double_margin"
+        android:gravity="center_horizontal"
+        android:text="@string/intro_profile_title"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/intro_short_description"
+        style="@style/fontMedium_reg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_side_margins"
+        android:text="@string/intro_profile_body"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/landing_welcome_two" />
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/intro_short_description"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/intro_company_logo"-->
+    <!--        android:orientation="vertical"-->
+    <!--        >-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profile_name_layout"
+        style="@style/inputFieldStyleSquared"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/default_double_margin"
+        android:elevation="@dimen/default_button_elevation"
+        android:hint="@string/intro_profile_name"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/intro_short_description"
+        app:cursorColor="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profile_name_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName|textCapWords"
+            android:maxLines="1"
+            android:scrollHorizontally="false"
+            android:textColor="@color/primary_text_color"
+            android:textColorHint="#546E7A"
+            android:textCursorDrawable="@drawable/custom_cursor"
+            android:textSize="18sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profile_age_layout"
+        style="@style/inputFieldStyleSquared"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/default_double_margin"
+        android:elevation="@dimen/default_button_elevation"
+        android:hint="@string/intro_profile_age"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_name_layout"
+        app:cursorColor="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profile_age_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLines="1"
+            android:maxEms="2"
+            android:scrollHorizontally="false"
+            android:textColor="@color/primary_text_color"
+            android:textColorHint="#546E7A"
+            android:textCursorDrawable="@drawable/custom_cursor"
+            android:textSize="18sp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <ImageView
+        android:id="@+id/intro_company_logo"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/lloydsbyte_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/primary_text_color" />
+
+    <TextView
+        android:id="@+id/landing_company_name"
+        style="@style/fontSmall_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:text="@string/intro_created_by"
+        android:textColor="@color/primary_text_color"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/intro_company_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/intro_company_logo" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/intro_next_fab"
+        style="@style/mainExtFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_side_margins"
+        android:text="@string/intro_next_button"
+        android:visibility="invisible"
+        app:icon="@drawable/ic_next"
+        app:layout_constraintBottom_toTopOf="@id/intro_company_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/intro_short_description" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

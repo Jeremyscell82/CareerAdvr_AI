@@ -1,2 +1,2 @@
-# CareerAdvr_AI
-Career Advisor V2
+# Career Advisor-AI
+An AI based accountant app

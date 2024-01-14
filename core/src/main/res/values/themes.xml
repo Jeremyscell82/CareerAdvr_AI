@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="coreCardviewDefaultStyle">
+        <item name="cardCornerRadius">@dimen/cardview_corners</item>
+        <item name="cardElevation">@dimen/cardview_default_elevation</item>
+        <item name="cardBackgroundColor">@color/cardview_background_color</item>
+        <item name="android:layout_marginStart">@dimen/default_small_padding</item>
+        <item name="android:layout_marginBottom">@dimen/default_small_padding</item>
+        <item name="android:layout_marginTop">@dimen/default_small_padding</item>
+        <item name="android:layout_marginEnd">@dimen/default_small_padding</item>
+    </style>
+
+    <style name="coreCardviewButtonStyle">
+        <item name="cardCornerRadius">@dimen/cardview_corners</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardBackgroundColor">@color/cardview_button_color</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:layout_marginStart">@dimen/default_small_padding</item>
+        <item name="android:layout_marginEnd">@dimen/default_small_padding</item>
+        <item name="android:layout_marginTop">@dimen/default_small_padding</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <style name="coreFontMedium_reg">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:padding">@dimen/default_padding</item>
+    </style>
+
+    <style name="coreFontMedium_bld">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:padding">@dimen/default_padding</item>
+    </style>
+
+    <style name="coreMainFab">
+        <item name="backgroundTint">@color/cardview_button_color</item>
+        <item name="tint">@color/primary_text_color</item>
+        <item name="elevation">0dp</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin</item>
+    </style>
+
+
+    <style name="coreMainExtFab">
+        <item name="backgroundTint">@color/cardview_button_color</item>
+        <item name="fabSize">mini</item>
+        <item name="rippleColor">@color/main_ripple_color</item>
+        <item name="iconTint">@color/primary_text_color</item>
+        <item name="elevation">@dimen/default_button_elevation</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:layout_marginStart">@dimen/default_small_padding</item>
+        <item name="android:layout_marginEnd">@dimen/default_small_padding</item>
+        <item name="android:layout_marginTop">@dimen/default_small_padding</item>
+        <item name="android:layout_marginBottom">@dimen/default_padding</item>
+        <item name="android:gravity">center</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="coreInputFieldStyleSquared" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/cardview_background</item>
+        <item name="boxCornerRadiusTopStart">@dimen/inputfield_sq_corners</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/inputfield_sq_corners</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/inputfield_sq_corners</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/inputfield_sq_corners</item>
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxStrokeColor">@color/input_stroke</item>
+        <item name="hintTextColor">@color/primary_text_color</item>
+        <item name="placeholderTextColor">@color/primary_text_color</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:textColorHint">@color/primary_text_color</item>
+        <item name="helperTextTextColor">@color/primary_text_color</item>
+        <item name="colorControlActivated">@color/primary_text_color</item>
+        <item name="endIconMode">clear_text</item>
+        <item name="cursorColor">@color/primary_text_color</item>
+    </style>
+
+    <style name="coreMakeClickable">
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+</resources>
