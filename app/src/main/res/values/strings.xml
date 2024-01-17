@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">AccuBooks AI</string>
-    <string name="bot_name">Janell</string>
+    <string name="app_name">Career Advr AI</string>
+    <string name="bot_name">Alyssa</string>
     <string name="company_name">LloydsByte LLC</string>
     <string name="default_notification_channel_id">LLOYDSBYTE.APPKIT-CHATGPT</string>
 
@@ -280,7 +280,7 @@ Lower values for temperature result in more consistent outputs, while higher val
     <string name="gpt_ask_here">Ask me Anything</string>
     <string name="share">Share</string>
     <string name="reset">Reset</string>
-    <string name="gpt_response">You asked:\n%1$s\n\nMy answer:\n%2$s</string>
+    <string name="gpt_response">You asked:\n%1$s\n\nMy answer:\n%2AccuBook$s</string>
     <!-- Config Section -->
     <string name="gpt_token_max">Max Tokens</string>
     <string name="gpt_convo_continuation">Continuation</string>
@@ -295,7 +295,7 @@ Lower values for temperature result in more consistent outputs, while higher val
     </string-array>
     <string name="gpt_temp">Temperature</string>
     <string name="gpt_language">Select a language for your responses</string>
-    <string name="gpt_language_selected">%s selected</string>
+    <string name="gpt_language_selected">%s selected</string>AccuBook
 
     <!-- SEND IT -->
     <string name="settings_feedback_no_email_title">No Email Detected</string>

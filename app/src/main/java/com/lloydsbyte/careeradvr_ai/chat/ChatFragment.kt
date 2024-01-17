@@ -40,7 +40,6 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
     companion object {
         val PROMPT_TITLE: String = "PROMPT_TITLE"
         val PROMPT_KEY: String = "PROMPT_KEY"
-        val PROMPT_CAT: String = "PROMPT_CAT"
     }
 
 
@@ -69,7 +68,6 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         adHelper = GptTokenController()
         viewModel.chatTitle = arguments?.getString(PROMPT_TITLE)?:getString(R.string.chat_basic_title)
         viewModel.systemPrompt = arguments?.getString(PROMPT_KEY)?:getString(R.string.chat_default_prompt)
-        viewModel.promptCategory = arguments?.getInt(PROMPT_CAT)?:CategoryHelper.AMA
         return binding.root
     }
 
@@ -186,7 +184,7 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         binding.chatCost.text = resources.getString(R.string.chat_convo_cost, viewModel.convoCost.toString())
         val chatModel = Gpt_Helper().createChatModel(viewModel.getConvoTimeStampId(), result.choices.first().message.role, result.choices.first().message.content)
         chatAdapter.addChat(binding.chatRecyclerview, chatModel)
-        binding.chatRecyclerview.scrollToPosition(viewModel.chatThread.size-1)
+        binding.chatRecyclerview.scrollToPosition(viewModel.chatThread.size)
         viewModel.chatThread.add(chatModel)
         binding.chatMenuFab.show()
         
@@ -196,6 +194,8 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
     override fun onNetworkError(error: Throwable) {
         ErrorController.logError(error)
         showErrorBottomsheet("Network Error", error.message.toString())
+        (requireActivity() as MainActivity).showLoadingView(false)
+        binding.chatInputSectionLayout.visibility = View.GONE
     }
     
     private fun maxLimitReached() {

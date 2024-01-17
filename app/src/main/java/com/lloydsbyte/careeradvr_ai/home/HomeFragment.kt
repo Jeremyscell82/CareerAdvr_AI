@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -13,6 +14,7 @@ import com.lloydsbyte.careeradvr_ai.MainActivity
 import com.lloydsbyte.careeradvr_ai.R
 import com.lloydsbyte.careeradvr_ai.analytics.MixPanelConstants
 import com.lloydsbyte.careeradvr_ai.analytics.MixPanelController
+import com.lloydsbyte.careeradvr_ai.bottomsheets.MoreInfoBottomSheet
 import com.lloydsbyte.careeradvr_ai.chat.ChatFragment
 import com.lloydsbyte.careeradvr_ai.databinding.FragmentHomeBinding
 import com.lloydsbyte.careeradvr_ai.proSpecific.ProSpecificFragment
@@ -22,6 +24,8 @@ import com.lloydsbyte.careeradvr_ai.utilz.UserProfileHelper
 import com.lloydsbyte.core.ErrorController
 import com.lloydsbyte.core.utilz.StoredPref
 import com.lloydsbyte.core.utilz.UtilzDateHelper
+import com.lloydsbyte.network.ConfigModel
+import timber.log.Timber
 
 /**
  * This fragment will hold the profile screen, basically the portfolio screen
@@ -29,6 +33,8 @@ import com.lloydsbyte.core.utilz.UtilzDateHelper
 class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
+    lateinit var homeAdapter: HomeAdapter
+    var homePrompts: List<ConfigModel.Prompt> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +42,8 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        homeAdapter = HomeAdapter()
+        homePrompts =  (requireActivity() as MainActivity).getListOfPrompts()
         return binding.root
     }
 
@@ -51,84 +59,82 @@ class HomeFragment : Fragment() {
                 R.string.home_welcome_text,
                 StoredPref(requireActivity()).getUserName()
             )
-            homeStartAmaChatCardview.setOnClickListener {
-                MixPanelController().reportUsageEvent(
-                    requireActivity(),
-                    MixPanelConstants.EVENT_CHAT,
-                    MixPanelConstants.VALUE_AMA,
-                    StoredPref(requireActivity()).getChatModel()
-                )
-                val bundle = Bundle()
-                val defaultPrompt =  Gpt_Helper().promptCreator(requireActivity(), (requireActivity() as MainActivity).getDefaultPrompt(), null, null)
-                bundle.putString(ChatFragment.PROMPT_KEY,defaultPrompt)
-                bundle.putInt(ChatFragment.PROMPT_CAT, CategoryHelper.AMA)
-                findNavController().navigate(R.id.action_homeFragment_to_chatFragment, bundle)
+
+            homeCategoryRecyclerview.apply {
+                adapter = homeAdapter
+                Timber.d("JL_ home prompts count: ${homePrompts.size}")
+                homeAdapter.initAdapter(true, binding.homeCategoryRecyclerview, homePrompts)
+                layoutManager = GridLayoutManager(requireActivity(), 2, GridLayoutManager.VERTICAL, false)
+                homeAdapter.onItemClicked = {
+                    val bundle = Bundle()
+                    bundle.putString(ChatFragment.PROMPT_TITLE, it.title)
+                    bundle.putString(ChatFragment.PROMPT_KEY,prepPrompt(it.title, it.systemPrompt))
+                    findNavController().navigate(R.id.action_homeFragment_to_chatFragment, bundle)
+                }
+                homeAdapter.onItemLongClicked = {
+                    val description: String = it.description.ifEmpty { "To be determined soon" }
+                    val bottomsheet = MoreInfoBottomSheet.createInstance(it.title,description)
+                    bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
+                }
+
             }
 
-            homeViewSavedChatsCardview.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_historyFragment)
-            }
-
-            homeProPersonalFab.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putBoolean(ProSpecificFragment.PERSONAL_BOOL_KEY, true)
-                findNavController().navigate(R.id.action_homeFragment_to_proFragment, bundle)
-            }
-            homeProBusinessFab.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putBoolean(ProSpecificFragment.PERSONAL_BOOL_KEY, false)
-                findNavController().navigate(R.id.action_homeFragment_to_proFragment, bundle)
-            }
-
-            //Update User Feeds
-            UserProfileHelper.createProfileReference(UserProfileHelper.endpointStatus).addValueEventListener(object: ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()){
-                        val status: String = snapshot.value.toString()
-                        StoredPref(requireActivity()).setProfileStatus(status)
-                    } else {
-                        UserProfileHelper.updateUserStatus(UserProfileHelper.statusFree)
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    ErrorController.logError("DB status cancelled: ${error.toException()}")
-                }
-
-            })
-
-            UserProfileHelper.createProfileReference(UserProfileHelper.endpointDateLimit).addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()){
-                        val date: String = snapshot.value.toString()
-                        StoredPref(requireActivity()).setUsageDate(date.toLong())
-                    } else {
-                        UserProfileHelper.updateDateLimit(UtilzDateHelper(UtilzDateHelper.DF_CAL).buildMillisDate())
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    ErrorController.logError("DB Date cancelled: ${error.toException()}")
-                }
-
-            })
-
-            UserProfileHelper.createProfileReference(UserProfileHelper.endpointUsageLimit).addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()){
-                        val limit: String = snapshot.value.toString()
-                        StoredPref(requireActivity()).setUsageLimit(limit.toInt())
-                    } else {
-                        UserProfileHelper.updateUsageLimit(0)
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    ErrorController.logError("DB usage cancelled: ${error.toException()}")
-                }
-
-            })
+//
+//
+//            //Update User Feeds
+//            UserProfileHelper.createProfileReference(UserProfileHelper.endpointStatus).addValueEventListener(object: ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    if (snapshot.exists()){
+//                        val status: String = snapshot.value.toString()
+//                        StoredPref(requireActivity()).setProfileStatus(status)
+//                    } else {
+//                        UserProfileHelper.updateUserStatus(UserProfileHelper.statusFree)
+//                    }
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                    ErrorController.logError("DB status cancelled: ${error.toException()}")
+//                }
+//
+//            })
+//
+//            UserProfileHelper.createProfileReference(UserProfileHelper.endpointDateLimit).addValueEventListener(object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    if (snapshot.exists()){
+//                        val date: String = snapshot.value.toString()
+//                        StoredPref(requireActivity()).setUsageDate(date.toLong())
+//                    } else {
+//                        UserProfileHelper.updateDateLimit(UtilzDateHelper(UtilzDateHelper.DF_CAL).buildMillisDate())
+//                    }
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                    ErrorController.logError("DB Date cancelled: ${error.toException()}")
+//                }
+//
+//            })
+//
+//            UserProfileHelper.createProfileReference(UserProfileHelper.endpointUsageLimit).addValueEventListener(object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    if (snapshot.exists()){
+//                        val limit: String = snapshot.value.toString()
+//                        StoredPref(requireActivity()).setUsageLimit(limit.toInt())
+//                    } else {
+//                        UserProfileHelper.updateUsageLimit(0)
+//                    }
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                    ErrorController.logError("DB usage cancelled: ${error.toException()}")
+//                }
+//
+//            })
         }
     }
 
+    private fun prepPrompt(title: String, prompt: String): String {
+        //This function will combine the users name, the default prompt and the additional prompt
+        val defaultPrompt = (requireActivity() as MainActivity).getDefaultPrompt()
+        return Gpt_Helper().promptCreator(requireActivity(), defaultPrompt, title, prompt)
+    }
 }

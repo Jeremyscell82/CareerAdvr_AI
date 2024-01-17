@@ -412,8 +412,8 @@ open class MainActivity : IAP_Helper() {
      * Getters for the config file
      */
 
-    fun getListOfPrompts(personalList: Boolean): List<ConfigModel.Prompt> {
-        return if (personalList)mainViewModel.getPromptListPersonal(this) else mainViewModel.getPromptListBusiness(this)
+    fun getListOfPrompts(): List<ConfigModel.Prompt> {
+        return mainViewModel.getPromptList(this)
     }
 
     fun getDefaultPrompt(): String {

@@ -36,7 +36,7 @@ class ProSpecificFragment : Fragment() {
         binding = FragmentProSpecificBinding.inflate(inflater, container, false)
         proAdapter = ProSpecificAdapter()
         personalPrompts = arguments?.getBoolean(PERSONAL_BOOL_KEY)?:true
-        promptsList = (requireActivity() as MainActivity).getListOfPrompts(personalPrompts)
+//        promptsList = (requireActivity() as MainActivity).getListOfPrompts(personalPrompts)
         return binding.root
     }
 
@@ -58,7 +58,7 @@ class ProSpecificFragment : Fragment() {
                         bundle.putString(ChatFragment.PROMPT_TITLE, it.title)
                         bundle.putString(ChatFragment.PROMPT_KEY,prepPrompt(it.title, it.systemPrompt))
                         val category: Int = if (personalPrompts)CategoryHelper.PERS else CategoryHelper.BUS
-                        bundle.putInt(ChatFragment.PROMPT_CAT, category)
+//                        bundle.putInt(ChatFragment.PROMPT_CAT, category)
                         findNavController().navigate(R.id.action_proFragment_to_chatFragment, bundle)
                     }
                 }
@@ -81,7 +81,7 @@ class ProSpecificFragment : Fragment() {
     private fun loadAdapter() {
         if (promptsList.isEmpty()) {
             //Something went wrong, pull config file again
-            promptsList = (requireActivity() as MainActivity).getListOfPrompts(personalPrompts)
+//            promptsList = (requireActivity() as MainActivity).getListOfPrompts(personalPrompts)
             proAdapter.initAdapter(animate, binding.proRecyclerview, promptsList)
             animate = false
         } else {

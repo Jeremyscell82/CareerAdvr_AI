@@ -21,7 +21,7 @@ class UtilzSendItHelper {
         val i = Intent(Intent.ACTION_SEND)
         i.type = "message/rfc822"
         i.putExtra(Intent.EXTRA_EMAIL, arrayOf(contactEmail))
-        i.putExtra(Intent.EXTRA_SUBJECT, "Chap-E Reporting bug")
+        i.putExtra(Intent.EXTRA_SUBJECT, "CareerAdvr AI Reporting bug")
         i.putExtra(Intent.EXTRA_TEXT, "I am on version $version and found a bug...")
         try {
             context.startActivity(Intent.createChooser(i, "Send email..."))
@@ -38,7 +38,7 @@ class UtilzSendItHelper {
         val i = Intent(Intent.ACTION_SEND)
         i.type = "message/rfc822"
         i.putExtra(Intent.EXTRA_EMAIL, arrayOf(contactEmail))
-        i.putExtra(Intent.EXTRA_SUBJECT, "Contact Request - Chap-E:$version")
+        i.putExtra(Intent.EXTRA_SUBJECT, "Contact Request - CareerAdvr AI :$version")
         try {
             context.startActivity(Intent.createChooser(i, "Send email..."))
         } catch (ex: ActivityNotFoundException) {
@@ -54,7 +54,7 @@ class UtilzSendItHelper {
         val i = Intent(Intent.ACTION_SEND)
         i.type = "message/rfc822"
         i.putExtra(Intent.EXTRA_EMAIL, arrayOf(contactEmail))
-        i.putExtra(Intent.EXTRA_SUBJECT, "Support Request with UID\nChap-E:$version\nUUID:${UID}")
+        i.putExtra(Intent.EXTRA_SUBJECT, "Support Request with UID\nCareerAdvr AI :$version\nUUID:${UID}")
         try {
             context.startActivity(Intent.createChooser(i, "Send email..."))
         } catch (ex: ActivityNotFoundException) {
@@ -71,7 +71,7 @@ class UtilzSendItHelper {
         val i = Intent(Intent.ACTION_SEND)
         i.type = "message/rfc822"
         i.putExtra(Intent.EXTRA_EMAIL, arrayOf(""))
-        i.putExtra(Intent.EXTRA_SUBJECT, "Chap-E told me...")
+        i.putExtra(Intent.EXTRA_SUBJECT, "Alyssa told me...")
         i.putExtra(Intent.EXTRA_TEXT, body)
         try {
             context.startActivity(Intent.createChooser(i, "Send email..."))

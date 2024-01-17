@@ -9,24 +9,22 @@ import com.lloydsbyte.network.ConfigModel
 class MainViewModel : ViewModel() {
     private var configFile: ConfigModel.BaseStructure? = null
 
+    private fun loadConfigFile(context: Context) {
+        configFile = Utilz.convertConfigToModel(StoredPref(context).readConfigFile())
+    }
+
     fun getDefaultPrompt(context: Context): String {
         if (configFile == null) {
-            configFile = Utilz.convertConfigToModel(StoredPref(context).readConfigFile())
+            loadConfigFile(context)
         }
         return configFile!!.defaultPrompt
     }
 
-    fun getPromptListBusiness(context: Context): List<ConfigModel.Prompt> {
-        if (configFile == null){
-            configFile = Utilz.convertConfigToModel(StoredPref(context).readConfigFile())
-        }
-        return configFile!!.promptListBusiness
-    }
 
-    fun getPromptListPersonal(context: Context): List<ConfigModel.Prompt> {
+    fun getPromptList(context: Context): List<ConfigModel.Prompt> {
         if (configFile == null){
-            configFile = Utilz.convertConfigToModel(StoredPref(context).readConfigFile())
+            loadConfigFile(context)
         }
-        return configFile!!.promptListPersonal
+        return configFile!!.promptList
     }
 }

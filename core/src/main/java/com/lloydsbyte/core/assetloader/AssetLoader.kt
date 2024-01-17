@@ -15,7 +15,7 @@ import java.lang.reflect.Type
 class AssetLoader {
 
     fun loadConfigFile(context: Context): ConfigModel.BaseStructure {
-        val catalogJsonString = getJsonDataFromAsset(context = context, fileName = "accubooks_config.json")
+        val catalogJsonString = getJsonDataFromAsset(context = context, fileName = "careeradvr_config.json")
         val type: Type = object : TypeToken<ConfigModel.BaseStructure?>(){}.type
         return Gson().fromJson(catalogJsonString, type)
     }

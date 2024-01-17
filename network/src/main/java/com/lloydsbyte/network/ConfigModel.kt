@@ -15,10 +15,8 @@ class ConfigModel {
         val promoBanner: List<PromoBanner>,
         @SerializedName("ama_prompt")
         val defaultPrompt: String,
-        @SerializedName("prompt_list_personal")
-        val promptListPersonal: List<Prompt>,
-        @SerializedName("prompt_list_business")
-        val promptListBusiness: List<Prompt>
+        @SerializedName("prompt_list")
+        val promptList: List<Prompt>
     )
 
     data class PromoBanner(

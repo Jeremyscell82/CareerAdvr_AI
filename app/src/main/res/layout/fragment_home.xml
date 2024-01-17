@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -34,32 +35,30 @@
         app:lottie_loop="true"/>
 
 
+<!--    <ScrollView-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/home_settings_fab"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintWidth_max="420dp"-->
+<!--        android:scrollbars="none"-->
+<!--        >-->
 
-
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_settings_fab"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintWidth_max="420dp"
-        android:scrollbars="none"
-        >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/default_side_margins"
-            android:layout_marginTop="@dimen/large_top_padding"
-            >
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingBottom="@dimen/default_side_margins"-->
+<!--            android:layout_marginTop="@dimen/large_top_padding"-->
+<!--            >-->
 
             <TextView
                 android:id="@+id/home_welcome_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_settings_fab"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="@dimen/default_side_margins"
                 android:layout_marginTop="@dimen/default_extra_large_margin"
@@ -81,283 +80,20 @@
                 android:text="@string/home_welcome_two"
                 />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintGuide_percent=".5"
-                android:orientation="vertical"
-                />
 
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/home_pro_cardview"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_category_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/cardviewDefaultStyle"
-                app:cardCornerRadius="28dp"
-                app:layout_constraintWidth_max="420dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/home_welcome_text_two"
-                android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginEnd="@dimen/default_margin"
-                android:layout_marginTop="@dimen/default_side_margins"
-                >
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:src="@drawable/img_bg_card"
-                        android:scaleType="fitXY"
-                        />
-
-                    <ImageView
-                        android:id="@+id/home_new_pro_icon"
-                        android:layout_width="42dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        android:src="@drawable/ic_professions"
-                        android:layout_margin="@dimen/default_margin"
-                        app:tint="@color/white"
-                        />
-
-                    <TextView
-                        android:id="@+id/home_pro_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toEndOf="@id/home_new_pro_icon"
-                        app:layout_constraintTop_toTopOf="@id/home_new_pro_icon"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="@id/home_new_pro_icon"
-                        android:layout_marginStart="@dimen/default_margin"
-                        android:text="@string/home_pro_specific"
-                        style="@style/fontSmall_reg"
-                        android:textColor="@color/white"
-                        />
-
-                    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                        android:id="@+id/home_pro_personal_fab"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/home_new_pro_icon"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        style="@style/mainExtFab"
-                        android:layout_marginTop="@dimen/default_margin"
-                        android:layout_marginStart="@dimen/default_side_margins"
-                        android:layout_marginEnd="@dimen/default_side_margins"
-                        android:text="@string/home_pro_personal"
-                        app:icon="@drawable/ic_next"
-                        app:iconGravity="end"
-                        app:backgroundTint="@color/blue_tint"
-                        android:textColor="@color/white"
-                        app:iconTint="@color/white"
-                        app:strokeColor="@color/white"
-                        app:strokeWidth="1dp"
-                        />
-
-                    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                        android:id="@+id/home_pro_business_fab"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/home_pro_personal_fab"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        style="@style/mainExtFab"
-                        android:layout_marginTop="@dimen/default_side_margins"
-                        android:layout_marginStart="@dimen/default_side_margins"
-                        android:layout_marginEnd="@dimen/default_side_margins"
-                        android:layout_marginBottom="@dimen/default_side_margins"
-                        android:text="@string/home_pro_business"
-                        app:icon="@drawable/ic_next"
-                        app:iconGravity="end"
-                        app:backgroundTint="@color/blue_tint"
-                        android:textColor="@color/white"
-                        app:iconTint="@color/white"
-                        app:strokeColor="@color/white"
-                        app:strokeWidth="1dp"
-                        />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/home_start_ama_chat_cardview"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                style="@style/cardviewButtonStyle"
-                app:cardBackgroundColor="@color/transparent"
-                app:layout_constraintWidth_max="200dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/guideline_center"
-                app:layout_constraintTop_toBottomOf="@id/home_pro_cardview"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="2:1.4"
-                android:layout_marginTop="@dimen/default_side_margins"
-                android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginEnd="@dimen/default_margin"
-                android:layout_marginBottom="@dimen/default_margin"
-                >
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:src="@drawable/img_bg_card"
-                        android:scaleType="centerCrop"
-                        />
-                    <ImageView
-                        android:id="@+id/home_new_chat_icon"
-                        android:layout_width="28dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        android:src="@drawable/ic_chat"
-                        android:layout_margin="@dimen/default_margin"
-                        app:tint="@color/white"
-                        />
-
-                    <TextView
-                        android:id="@+id/home_new_chat_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/home_new_chat_icon"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:lines="2"
-                        android:layout_marginStart="@dimen/default_margin"
-                        android:layout_marginBottom="@dimen/default_padding"
-                        android:layout_marginEnd="@dimen/default_side_margins"
-                        android:text="@string/home_new_chat"
-                        style="@style/fontMedium_reg"
-                        android:textColor="@color/white"
-
-                        />
-
-                    <ImageView
-                        android:id="@+id/next_carrot"
-                        android:layout_width="28dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        android:src="@drawable/ic_next"
-                        android:layout_margin="@dimen/default_padding"
-                        app:tint="@color/white"
-                        />
+                />
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/home_view_saved_chats_cardview"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                style="@style/cardviewButtonStyle"
-                app:cardBackgroundColor="@color/transparent"
-                app:layout_constraintWidth_max="200dp"
-                app:layout_constraintStart_toEndOf="@id/guideline_center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/home_pro_cardview"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="2:1.4"
-                android:layout_marginTop="@dimen/default_side_margins"
-                android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginEnd="@dimen/default_margin"
-                android:layout_marginBottom="@dimen/default_margin"
-                >
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:src="@drawable/img_bg_card"
-                        android:scaleType="fitXY"
-                        android:rotation="180"
-                        />
-
-                    <ImageView
-                        android:id="@+id/home_new_img_icon"
-                        android:layout_width="38dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        android:src="@drawable/ic_history"
-                        android:layout_margin="@dimen/default_margin"
-                        app:tint="@color/white"
-                        />
-
-                    <TextView
-                        android:id="@+id/home_new_img_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/home_new_img_icon"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:lines="2"
-                        android:layout_marginStart="@dimen/default_margin"
-                        android:layout_marginBottom="@dimen/default_padding"
-                        android:layout_marginEnd="@dimen/default_side_margins"
-                        android:text="@string/home_saved_chats"
-                        style="@style/fontMedium_reg"
-                        android:textColor="@color/white"
-                        />
-
-                    <ImageView
-                        android:id="@+id/next_carrot_2"
-                        android:layout_width="28dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        android:src="@drawable/ic_next"
-                        android:layout_margin="@dimen/default_padding"
-                        app:tint="@color/white"
-                        />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </ScrollView>-->
 
 
 
