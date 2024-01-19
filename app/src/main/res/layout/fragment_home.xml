@@ -153,6 +153,7 @@
                         android:layout_marginEnd="@dimen/default_side_margins"
                         android:text="@string/home_pro_specific"
                         style="@style/fontMedium_reg"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
                         />
 
@@ -232,7 +233,7 @@
                         android:text="@string/home_new_chat"
                         style="@style/fontMedium_reg"
                         android:textColor="@color/white"
-
+                        android:textStyle="bold"
                         />
 
                     <ImageView
@@ -314,6 +315,7 @@
                         android:text="@string/home_saved_chats"
                         style="@style/fontMedium_reg"
                         android:textColor="@color/white"
+                        android:textStyle="bold"
                         />
 
                     <ImageView

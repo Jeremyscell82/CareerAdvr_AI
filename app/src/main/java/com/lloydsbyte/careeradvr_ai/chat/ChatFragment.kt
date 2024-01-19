@@ -72,7 +72,6 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Toast.makeText(requireActivity(), "New UI loaded", Toast.LENGTH_SHORT).show()
         binding.apply {
             chatBackFab.setOnClickListener {
                 findNavController().popBackStack()
