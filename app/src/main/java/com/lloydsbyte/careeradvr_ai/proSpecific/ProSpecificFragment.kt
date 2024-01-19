@@ -12,7 +12,6 @@ import com.lloydsbyte.careeradvr_ai.R
 import com.lloydsbyte.careeradvr_ai.bottomsheets.MoreInfoBottomSheet
 import com.lloydsbyte.careeradvr_ai.chat.ChatFragment
 import com.lloydsbyte.careeradvr_ai.databinding.FragmentProSpecificBinding
-import com.lloydsbyte.careeradvr_ai.utilz.CategoryHelper
 import com.lloydsbyte.careeradvr_ai.utilz.Gpt_Helper
 import com.lloydsbyte.core.assetloader.AssetLoader
 import com.lloydsbyte.network.ConfigModel
@@ -55,8 +54,6 @@ class ProSpecificFragment : Fragment() {
                     val bundle = Bundle()
                     bundle.putString(ChatFragment.PROMPT_TITLE, it.title)
                     bundle.putString(ChatFragment.PROMPT_KEY,prepPrompt(it.title, it.systemPrompt))
-                    val category: Int = if (personalPrompts)CategoryHelper.PERS else CategoryHelper.BUS
-//                        bundle.putInt(ChatFragment.PROMPT_CAT, category)
                     findNavController().navigate(R.id.action_proFragment_to_chatFragment, bundle)
                 }
                 proAdapter.onItemLongClicked = {

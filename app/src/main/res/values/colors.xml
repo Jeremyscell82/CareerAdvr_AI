@@ -3,7 +3,7 @@
     <!-- Main App Colors -->
     <color name="app_color">#224D9D</color>
     <color name="statusbar_background_color">#000000</color>
-    <color name="main_fab_color">#398080</color>
+    <color name="main_fab_color">#2196F3</color>
     <color name="main_fab_text_color">#E1E1E1</color>
     <!-- Main background of the app when in a native screen, also the main background to the webviews -->
     <color name="main_background_color">#FFFFFF</color>
@@ -14,7 +14,7 @@
     <color name="bottombar_inactive">#797979</color>
     <color name="bottombar_background">#2B2B30</color>
     <!-- Other Colors -->
-    <color name="splash_background">#A8B2D0</color>
+    <color name="splash_background">#FFFFFF</color>
     <color name="main_background">#DCDCDC</color>
     <color name="semi_transparent_background">#E61E1E1E</color>
     <color name="input_stroke">#5F5F5F</color>

@@ -15,7 +15,6 @@ import com.lloydsbyte.careeradvr_ai.R
 import com.lloydsbyte.careeradvr_ai.chat.chat_menu.BottomsheetMenu
 import com.lloydsbyte.careeradvr_ai.chat.chat_menu.MenuInterface
 import com.lloydsbyte.careeradvr_ai.databinding.FragmentChatBinding
-import com.lloydsbyte.careeradvr_ai.utilz.CategoryHelper
 import com.lloydsbyte.careeradvr_ai.utilz.GptTokenController
 import com.lloydsbyte.careeradvr_ai.utilz.Gpt_Helper
 import com.lloydsbyte.core.ErrorController
@@ -252,7 +251,7 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
             chatGptConvoId = viewModel.gptConvoId,
             convoName = saveName,
             conversationID = viewModel.getConvoTimeStampId(),
-            viewModel.promptCategory
+            viewModel.chatTitle
         )
         saveToDatabase()
     }

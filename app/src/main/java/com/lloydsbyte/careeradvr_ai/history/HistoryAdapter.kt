@@ -8,7 +8,6 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.lloydsbyte.careeradvr_ai.R
 import com.lloydsbyte.careeradvr_ai.databinding.ItemHistoryBinding
-import com.lloydsbyte.careeradvr_ai.utilz.CategoryHelper
 import com.lloydsbyte.core.utilz.UtilzDateHelper
 import com.lloydsbyte.database.models.ChatHeaderModel
 
@@ -61,7 +60,7 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryAdapterViewHold
                 itemHistoryDate.text = UtilzDateHelper(UtilzDateHelper.DF_TIMEDATE).convertDateFromMillis(chatHeader.conversationID)
 
 //                itemHistoryQuestionHeader.text = chatHeader.convoName
-                itemCategoryImage.setImageDrawable(ResourcesCompat.getDrawable(root.context.resources, CategoryHelper().getIcon(chatHeader.category), null))
+                itemCategoryImage.setImageDrawable(ResourcesCompat.getDrawable(root.context.resources, R.drawable.ic_account, null))
 
                 itemHistoryCardview.setOnClickListener {
                     onItemClicked?.invoke(chatHeader)

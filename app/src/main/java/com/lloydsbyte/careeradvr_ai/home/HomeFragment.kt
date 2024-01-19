@@ -6,24 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.lloydsbyte.careeradvr_ai.MainActivity
 import com.lloydsbyte.careeradvr_ai.R
-import com.lloydsbyte.careeradvr_ai.analytics.MixPanelConstants
 import com.lloydsbyte.careeradvr_ai.analytics.MixPanelController
-import com.lloydsbyte.careeradvr_ai.bottomsheets.MoreInfoBottomSheet
 import com.lloydsbyte.careeradvr_ai.chat.ChatFragment
 import com.lloydsbyte.careeradvr_ai.databinding.FragmentHomeBinding
-import com.lloydsbyte.careeradvr_ai.proSpecific.ProSpecificFragment
-import com.lloydsbyte.careeradvr_ai.utilz.CategoryHelper
 import com.lloydsbyte.careeradvr_ai.utilz.Gpt_Helper
-import com.lloydsbyte.careeradvr_ai.utilz.UserProfileHelper
-import com.lloydsbyte.core.ErrorController
 import com.lloydsbyte.core.utilz.StoredPref
-import com.lloydsbyte.core.utilz.UtilzDateHelper
 import com.lloydsbyte.network.ConfigModel
 import timber.log.Timber
 

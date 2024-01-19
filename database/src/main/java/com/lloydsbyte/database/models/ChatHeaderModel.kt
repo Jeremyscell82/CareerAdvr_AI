@@ -19,5 +19,5 @@ data class ChatHeaderModel(
     @ColumnInfo(name = "timestamp")
     val conversationID: Long,
     @ColumnInfo(name = "category")
-    val category: Int
+    val category: String
 ): Parcelable

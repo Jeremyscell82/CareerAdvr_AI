@@ -1,7 +1,6 @@
 package com.lloydsbyte.careeradvr_ai.chat
 
 import androidx.lifecycle.ViewModel
-import com.lloydsbyte.careeradvr_ai.utilz.CategoryHelper
 import com.lloydsbyte.core.utilz.UtilzDateHelper
 import com.lloydsbyte.database.models.ChatHeaderModel
 import com.lloydsbyte.database.models.ChatModel
@@ -12,7 +11,6 @@ class ChatViewModel: ViewModel() {
     //For ALL
     var chatTitle: String = ""
     var systemPrompt: String = ""
-    var promptCategory: Int = CategoryHelper.AMA
     var gptConvoId: String = ""
     var convoCost: Int = 0
     var questionEntered: String = ""
