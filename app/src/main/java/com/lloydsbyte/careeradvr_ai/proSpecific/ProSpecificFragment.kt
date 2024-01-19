@@ -14,6 +14,7 @@ import com.lloydsbyte.careeradvr_ai.chat.ChatFragment
 import com.lloydsbyte.careeradvr_ai.databinding.FragmentProSpecificBinding
 import com.lloydsbyte.careeradvr_ai.utilz.CategoryHelper
 import com.lloydsbyte.careeradvr_ai.utilz.Gpt_Helper
+import com.lloydsbyte.core.assetloader.AssetLoader
 import com.lloydsbyte.network.ConfigModel
 import timber.log.Timber
 
@@ -36,7 +37,7 @@ class ProSpecificFragment : Fragment() {
         binding = FragmentProSpecificBinding.inflate(inflater, container, false)
         proAdapter = ProSpecificAdapter()
         personalPrompts = arguments?.getBoolean(PERSONAL_BOOL_KEY)?:true
-//        promptsList = (requireActivity() as MainActivity).getListOfPrompts(personalPrompts)
+        promptsList =  (requireActivity() as MainActivity).getListOfPrompts()
         return binding.root
     }
 
@@ -49,18 +50,14 @@ class ProSpecificFragment : Fragment() {
             proRecyclerview.apply {
                 adapter = proAdapter
                 layoutManager = GridLayoutManager(requireActivity(), 2, GridLayoutManager.VERTICAL, false)
-//                if (homeAdapter.adapterItems.isEmpty())homeAdapter.initAdapter(AssetLoader().loadLocalConfig(requireActivity()).homeItems)
+                proAdapter.initAdapter(savedInstanceState== null, this, promptsList)
                 proAdapter.onItemClicked = {
-                    if (it.payWall && true){ // Todo check if user has paid or has subscribed
-                    } else {
-                      //Just launch the chat screen
-                        val bundle = Bundle()
-                        bundle.putString(ChatFragment.PROMPT_TITLE, it.title)
-                        bundle.putString(ChatFragment.PROMPT_KEY,prepPrompt(it.title, it.systemPrompt))
-                        val category: Int = if (personalPrompts)CategoryHelper.PERS else CategoryHelper.BUS
+                    val bundle = Bundle()
+                    bundle.putString(ChatFragment.PROMPT_TITLE, it.title)
+                    bundle.putString(ChatFragment.PROMPT_KEY,prepPrompt(it.title, it.systemPrompt))
+                    val category: Int = if (personalPrompts)CategoryHelper.PERS else CategoryHelper.BUS
 //                        bundle.putInt(ChatFragment.PROMPT_CAT, category)
-                        findNavController().navigate(R.id.action_proFragment_to_chatFragment, bundle)
-                    }
+                    findNavController().navigate(R.id.action_proFragment_to_chatFragment, bundle)
                 }
                 proAdapter.onItemLongClicked = {
                     val description: String = if (it.description.isEmpty())"To be determined soon" else it.description

@@ -75,8 +75,8 @@ class NetworkController(
     }
 
 
-    fun chatGptRequest(callback: GptQuestionInterface, payload: JsonObject) {
-        disposable = networkClient.askQuestion(NetworkConstants.ai_key, payload)
+    fun chatGptRequest(callback: GptQuestionInterface, key: String, payload: JsonObject) {
+        disposable = networkClient.askQuestion(key, payload)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -88,7 +88,7 @@ class NetworkController(
                     when {
                         retryCount < retryMax -> {
                             retryCount += 1
-                            chatGptRequest(callback, payload)
+                            chatGptRequest(callback, key, payload)
                         }
                         else -> {
                             callback.onNetworkError(error)

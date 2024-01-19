@@ -3,6 +3,7 @@ package com.lloydsbyte.network
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import javax.crypto.SecretKey
 
 class ConfigModel {
 
@@ -13,6 +14,8 @@ class ConfigModel {
         val minBuild: Int,
         @SerializedName("promo_banner")
         val promoBanner: List<PromoBanner>,
+        @SerializedName("secret_key")
+        val secretKey: String,
         @SerializedName("ama_prompt")
         val defaultPrompt: String,
         @SerializedName("prompt_list")

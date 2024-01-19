@@ -2,6 +2,7 @@
   "version": "2024.1",
   "readme": "This is a read me to explain any complications to the developer. Nothing complicated yet.",
   "min_build": 1,
+  "secret_key": "3BlbkFJYXIkyDGzPBfNMaUQp702",
   "promo_banner": [
     {
       "id": 101,
@@ -55,7 +56,7 @@
     {
       "title": "Career Advice",
       "description": "Ask a AI powered career advisor anything you want in regards to your career.",
-      "prompt": "The client has some questions for you in regards to their career. Assist the client best as possible.",
+      "prompt": "The client has some questions for you in regards to their career. Assist the client as best as possible.",
       "paywall": false
     }
   ]

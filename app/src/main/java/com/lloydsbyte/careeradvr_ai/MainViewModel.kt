@@ -27,4 +27,11 @@ class MainViewModel : ViewModel() {
         }
         return configFile!!.promptList
     }
+
+    fun getSecretKey(context: Context): String {
+        if (configFile == null){
+            loadConfigFile(context)
+        }
+        return configFile!!.secretKey
+    }
 }

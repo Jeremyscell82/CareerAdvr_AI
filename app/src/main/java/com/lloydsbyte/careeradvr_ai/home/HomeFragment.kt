@@ -43,7 +43,6 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         homeAdapter = HomeAdapter()
-        homePrompts =  (requireActivity() as MainActivity).getListOfPrompts()
         return binding.root
     }
 
@@ -60,24 +59,41 @@ class HomeFragment : Fragment() {
                 StoredPref(requireActivity()).getUserName()
             )
 
-            homeCategoryRecyclerview.apply {
-                adapter = homeAdapter
-                Timber.d("JL_ home prompts count: ${homePrompts.size}")
-                homeAdapter.initAdapter(true, binding.homeCategoryRecyclerview, homePrompts)
-                layoutManager = GridLayoutManager(requireActivity(), 2, GridLayoutManager.VERTICAL, false)
-                homeAdapter.onItemClicked = {
-                    val bundle = Bundle()
-                    bundle.putString(ChatFragment.PROMPT_TITLE, it.title)
-                    bundle.putString(ChatFragment.PROMPT_KEY,prepPrompt(it.title, it.systemPrompt))
-                    findNavController().navigate(R.id.action_homeFragment_to_chatFragment, bundle)
-                }
-                homeAdapter.onItemLongClicked = {
-                    val description: String = it.description.ifEmpty { "To be determined soon" }
-                    val bottomsheet = MoreInfoBottomSheet.createInstance(it.title,description)
-                    bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
-                }
-
+            homeStartAmaChatCardview.setOnClickListener {
+                MixPanelController().reportChatUsed(requireActivity(), MixPanelController.EVENT_USED_AMA)
+                val bundle = Bundle()
+                val defaultPrompt =  Gpt_Helper().promptCreator(requireActivity(), (requireActivity() as MainActivity).getDefaultPrompt(), null, null)
+                bundle.putString(ChatFragment.PROMPT_KEY,defaultPrompt)
+                findNavController().navigate(R.id.action_homeFragment_to_chatFragment, bundle)
             }
+
+            homeViewSavedChatsCardview.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_historyFragment)
+            }
+
+            homeProCardview.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_proFragment)
+            }
+
+
+//            homeCategoryRecyclerview.apply {
+//                adapter = homeAdapter
+//                Timber.d("JL_ home prompts count: ${homePrompts.size}")
+//                homeAdapter.initAdapter(true, binding.homeCategoryRecyclerview, homePrompts)
+//                layoutManager = GridLayoutManager(requireActivity(), 2, GridLayoutManager.VERTICAL, false)
+//                homeAdapter.onItemClicked = {
+//                    val bundle = Bundle()
+//                    bundle.putString(ChatFragment.PROMPT_TITLE, it.title)
+//                    bundle.putString(ChatFragment.PROMPT_KEY,prepPrompt(it.title, it.systemPrompt))
+//                    findNavController().navigate(R.id.action_homeFragment_to_chatFragment, bundle)
+//                }
+//                homeAdapter.onItemLongClicked = {
+//                    val description: String = it.description.ifEmpty { "To be determined soon" }
+//                    val bottomsheet = MoreInfoBottomSheet.createInstance(it.title,description)
+//                    bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
+//                }
+//
+//            }
 
 //
 //

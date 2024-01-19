@@ -419,4 +419,8 @@ open class MainActivity : IAP_Helper() {
     fun getDefaultPrompt(): String {
         return mainViewModel.getDefaultPrompt(this)
     }
+
+    fun getSecretKey(): String {
+        return mainViewModel.getSecretKey(this)
+    }
 }

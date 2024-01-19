@@ -148,9 +148,10 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
 
         (requireActivity() as MainActivity).showLoadingView(true)
 
-
+        val jsonPayload = Gpt_Helper().prepPayload(requireActivity(), NetworkConstants.gpt_4, viewModel.chatThread, systemPrompt)
+        val key = "${NetworkConstants.ai_key}${(requireActivity() as MainActivity).getSecretKey()}"
         networkController.chatGptRequest(
-            this, Gpt_Helper().prepPayload(requireActivity(), NetworkConstants.gpt_4, viewModel.chatThread, systemPrompt)
+            this, key, jsonPayload
         )
 
         //Update UI

@@ -4,7 +4,7 @@ class NetworkConstants {
     companion object {
         const val countriesApi = "https://restcountries.com/v3.1/"
         //GPT CODE
-        const val ai_key = "Bearer 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"
+        const val ai_key = "Bearer sk-vwriCqNczWTYQLrqQLQXT"
 
         //CONFIG FILE
         const val serverBaseUrl = "https://lloydsbyte.com/cloud/"
