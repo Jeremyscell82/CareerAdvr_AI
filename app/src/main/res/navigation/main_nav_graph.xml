@@ -95,10 +95,10 @@
         <action
             android:id="@+id/action_historyFragment_to_historyConvoFragment"
             app:destination="@id/historyConvoFragment"
-            app:enterAnim="@anim/slide_in_up"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out_down"/>
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/fade_out"/>
 
     </fragment>
 

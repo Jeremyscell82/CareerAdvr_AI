@@ -13,6 +13,10 @@ class GptTokenController {
     private val costPerAd: Int = 400
     private val maxCostLimit: Int = 10000
 
+    fun adsShown(): Int {
+        return adsShown
+    }
+
     fun shouldShowAds(convoCost: Int): Boolean {
         val adsShownSoFar = convoCost / costPerAd
         val showAd = adsShown == adsShownSoFar

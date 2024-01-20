@@ -15,7 +15,15 @@ class FirebaseController {
         val EVENT_APP_FEEDBACK = "app_feedback_sent"
     }
 
-    fun reportFirebaseEvent(eventName: String, appVersion: String){
+    fun reportAdClicked() {
+        reportFirebaseEvent(EVENT_AD_CLICKED, "true")
+    }
+
+    fun reportAdError() {
+        reportFirebaseEvent(EVENT_AD_FAILED, "true")
+    }
+
+    private fun reportFirebaseEvent(eventName: String, appVersion: String){
         Firebase.analytics.logEvent(eventName, packageParams(appVersion))
     }
 

@@ -11,6 +11,8 @@ class ChatViewModel: ViewModel() {
     //For ALL
     var chatTitle: String = ""
     var systemPrompt: String = ""
+    var instructions: String = ""
+    var showInstructions: Boolean = true
     var gptConvoId: String = ""
     var convoCost: Int = 0
     var questionEntered: String = ""
@@ -20,14 +22,12 @@ class ChatViewModel: ViewModel() {
 
     fun getConvoTimeStampId(): Long {
         if (convoTimeStamp == 0L){
-            Timber.d("JL_ timestamp was empty....$convoTimeStamp")
             convoTimeStamp = if (convoHeaderModel?.conversationID != null){
                 convoHeaderModel!!.conversationID
             } else {
                 UtilzDateHelper(UtilzDateHelper.DF_TIMEDATE).buildMillisDate()
             }
         }
-        Timber.d("JL_ initiating timestamp feed....$convoTimeStamp")
         return convoTimeStamp
     }
 

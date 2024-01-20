@@ -6,20 +6,23 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.lloydsbyte.careeradvr_ai.MainActivity
 import com.lloydsbyte.careeradvr_ai.R
+import com.lloydsbyte.careeradvr_ai.analytics.Analytix
 import com.lloydsbyte.careeradvr_ai.chat.chat_menu.BottomsheetMenu
 import com.lloydsbyte.careeradvr_ai.chat.chat_menu.MenuInterface
 import com.lloydsbyte.careeradvr_ai.databinding.FragmentChatBinding
 import com.lloydsbyte.careeradvr_ai.utilz.GptTokenController
 import com.lloydsbyte.careeradvr_ai.utilz.Gpt_Helper
 import com.lloydsbyte.core.ErrorController
+import com.lloydsbyte.core.custombottomsheet.BottomsheetConfirm
 import com.lloydsbyte.core.custombottomsheet.BottomsheetEditFieldFragment
+import com.lloydsbyte.core.custombottomsheet.ConfirmInterface
 import com.lloydsbyte.core.custombottomsheet.ErrorBottomsheet
+import com.lloydsbyte.core.custombottomsheet.VersionBottomsheet
 import com.lloydsbyte.core.customdialog.CustomDialogs
 import com.lloydsbyte.core.search_bottomsheet.BottomsheetSearchInterface
 import com.lloydsbyte.core.utilz.UtilzSendItHelper
@@ -34,11 +37,12 @@ import com.lloydsbyte.network.interfaces.GptQuestionInterface
 import com.lloydsbyte.network.responses.ChatGptResponse
 
 class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, BottomsheetSearchInterface,
-    DatabaseInterface {
+    DatabaseInterface, ConfirmInterface {
 
     companion object {
         val PROMPT_TITLE: String = "PROMPT_TITLE"
         val PROMPT_KEY: String = "PROMPT_KEY"
+        val PROMPT_INSTRUCTIONS = "PROMPT_INTSRUCTIONS"
     }
 
 
@@ -67,6 +71,7 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         adHelper = GptTokenController()
         viewModel.chatTitle = arguments?.getString(PROMPT_TITLE)?:getString(R.string.chat_basic_title)
         viewModel.systemPrompt = arguments?.getString(PROMPT_KEY)?:getString(R.string.chat_default_prompt)
+        viewModel.instructions = arguments?.getString(PROMPT_INSTRUCTIONS)?:""
         return binding.root
     }
 
@@ -108,6 +113,10 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
 
                 })
             }
+            chatConfigFab.setOnClickListener {
+                showInstructions()
+            }
+
             chatSendFab.setOnClickListener {
                 askQuestion()
             }
@@ -119,10 +128,24 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         }
         //Show keyboard and set focus
         UtilzViewHelper.showSoftKeyboard(requireActivity(), binding.chatInputField)
+        if (viewModel.instructions.isNotEmpty()) {
+            if (viewModel.showInstructions)showInstructions()
+        } else {
+            //No instructions to show
+            binding.chatConfigFab.hide()
+        }
 
         //Todo Initi Data Feeds if
     }
 
+    private fun showInstructions() {
+        viewModel.showInstructions = false
+        val bottomsheet = ErrorBottomsheet.createInstance(
+            errorTitle = "Instructions",
+            errorMessage = viewModel.instructions
+        )
+        bottomsheet.show(requireActivity().supportFragmentManager ,bottomsheet.tag)
+    }
 
     private fun askQuestion() {
 
@@ -274,7 +297,11 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
     override fun onDestroy() {
         networkController.destroyConnection()
         GptTokenController().addToTotalCount(requireActivity(), viewModel.convoCost)
+        Analytix().reportCost(requireActivity().applicationContext, viewModel.convoCost.toString(), adHelper.adsShown().toString())
         super.onDestroy()
+    }
+
+    override fun onActionPressed() {
     }
 
 }

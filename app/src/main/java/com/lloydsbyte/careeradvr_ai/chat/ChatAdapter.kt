@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.lloydsbyte.careeradvr_ai.R
 import com.lloydsbyte.careeradvr_ai.databinding.ItemChatBinding
 import com.lloydsbyte.careeradvr_ai.utilz.Gpt_Helper.Companion.assistant
 import com.lloydsbyte.careeradvr_ai.utilz.Gpt_Helper.Companion.user
+import com.lloydsbyte.core.customdialog.CustomDialogs
 import com.lloydsbyte.core.utilz.Utilz
 import com.lloydsbyte.database.models.ChatModel
 
@@ -52,7 +54,8 @@ class ChatAdapter: RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
                 cardviewPlacement(this, chatModel)
                 itemChatCardview.setOnLongClickListener {
                     Utilz.copyToClipboard(root.context, chatModel.content)
-                    false
+                    CustomDialogs.snackbar(root, "copied")
+                    true
                 }
             }
         }

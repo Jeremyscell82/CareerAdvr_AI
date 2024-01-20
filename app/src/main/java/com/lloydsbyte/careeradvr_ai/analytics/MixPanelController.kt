@@ -8,27 +8,22 @@ import org.json.JSONObject
  * This class will be the front facing class that sends off MixPanel Analytics
  */
 class MixPanelController : MixPanelConstants() {
-    companion object {
-
-        val EVENT_USED_AMA = "used_ama"
-        val EVENT_USED_PER = "used_per"
-        val EVENT_USED_BUS  = "used_bus"
-
-    }
 
     private val MIX_CHAT = "mix_chat"
     private val EVENT_CONVO_COST = "mix_convo_cost"
+
     private val EVENT_CONVO_ADS_SHOWN= "mix_convo_ads_shown"
+
 
     private fun getMixPanelInstance(appContext: Context): MixpanelAPI {
         return MixpanelAPI.getInstance(appContext.applicationContext,
             mixpanelId, false)
     }
 
-    fun reportChatUsed(appContext: Context, eventName: String) {
+    fun reportChatUsed(appContext: Context, eventName: String, eventVlaue: String) {
         val mixPanelInstance = getMixPanelInstance(appContext)
         val props = JSONObject()
-        props.put(eventName, true)
+        props.put(eventName, eventVlaue)
         mixPanelInstance.track(MIX_CHAT, props)
     }
     fun reportConvoCost(appContext: Context, cost: String, adsShown: String) {

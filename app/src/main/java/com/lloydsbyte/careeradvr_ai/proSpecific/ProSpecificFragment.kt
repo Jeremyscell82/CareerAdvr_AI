@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.lloydsbyte.careeradvr_ai.MainActivity
 import com.lloydsbyte.careeradvr_ai.R
+import com.lloydsbyte.careeradvr_ai.analytics.Analytix
 import com.lloydsbyte.careeradvr_ai.bottomsheets.MoreInfoBottomSheet
 import com.lloydsbyte.careeradvr_ai.chat.ChatFragment
 import com.lloydsbyte.careeradvr_ai.databinding.FragmentProSpecificBinding
@@ -51,9 +52,11 @@ class ProSpecificFragment : Fragment() {
                 layoutManager = GridLayoutManager(requireActivity(), 2, GridLayoutManager.VERTICAL, false)
                 proAdapter.initAdapter(savedInstanceState== null, this, promptsList)
                 proAdapter.onItemClicked = {
+                    Analytix().reportProUsed(requireActivity().applicationContext, it.title)
                     val bundle = Bundle()
                     bundle.putString(ChatFragment.PROMPT_TITLE, it.title)
                     bundle.putString(ChatFragment.PROMPT_KEY,prepPrompt(it.title, it.systemPrompt))
+                    bundle.putString(ChatFragment.PROMPT_INSTRUCTIONS, it.instructions)
                     findNavController().navigate(R.id.action_proFragment_to_chatFragment, bundle)
                 }
                 proAdapter.onItemLongClicked = {

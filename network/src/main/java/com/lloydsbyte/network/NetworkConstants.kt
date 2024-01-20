@@ -8,7 +8,7 @@ class NetworkConstants {
 
         //CONFIG FILE
         const val serverBaseUrl = "https://lloydsbyte.com/cloud/"
-        const val configFileEndpoint = "appkit/accubooks_config.json"
+        const val configFileEndpoint = "appkit/careeradvr_config.json"
 
         const val gptBaseUrl = "https://api.openai.com/v1/"
         const val aiModelsEndpoint = "models"

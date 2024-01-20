@@ -49,8 +49,8 @@ class IntroSectionActivity: AppCompatActivity(), ConfigFileInterface {
         binding = ActivityLandingBinding.inflate(layoutInflater)
 
         //Todo change this if not using FirebaseAuth
-//        if (true) {
-        if (StoredPref(this).isNewUser()) {
+        if (false) {
+//        if (StoredPref(this).isNewUser()) {
             //Run onboarding screens, and download config file in background
             setTheme(R.style.Theme_AppKit)
             setContentView(binding.root)

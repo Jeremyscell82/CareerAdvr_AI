@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.lloydsbyte.careeradvr_ai.MainActivity
 import com.lloydsbyte.careeradvr_ai.R
+import com.lloydsbyte.careeradvr_ai.analytics.Analytix
 import com.lloydsbyte.careeradvr_ai.analytics.MixPanelController
 import com.lloydsbyte.careeradvr_ai.chat.ChatFragment
 import com.lloydsbyte.careeradvr_ai.databinding.FragmentHomeBinding
@@ -49,7 +50,7 @@ class HomeFragment : Fragment() {
             )
 
             homeStartAmaChatCardview.setOnClickListener {
-                MixPanelController().reportChatUsed(requireActivity(), MixPanelController.EVENT_USED_AMA)
+                Analytix().reportAmaUsed(requireActivity().applicationContext)
                 val bundle = Bundle()
                 val defaultPrompt =  Gpt_Helper().promptCreator(requireActivity(), (requireActivity() as MainActivity).getDefaultPrompt(), null, null)
                 bundle.putString(ChatFragment.PROMPT_KEY,defaultPrompt)

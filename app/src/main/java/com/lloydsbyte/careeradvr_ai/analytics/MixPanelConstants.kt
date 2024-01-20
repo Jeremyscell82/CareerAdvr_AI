@@ -2,7 +2,7 @@ package com.lloydsbyte.careeradvr_ai.analytics
 
 open class MixPanelConstants {
     companion object {
-        const val mixpanelId = "07a44ee5b2d08818752203096c9d9fc4"
+        const val mixpanelId = "b3b9f37167a910fb79a29464b71a1094"
 
         val MIX_USAGE = "app_usage"
         val MIX_ERROR = "app_error"

@@ -6,8 +6,7 @@ import android.os.Bundle
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.BuildConfig
 import com.google.firebase.ktx.Firebase
-import com.mixpanel.android.mpmetrics.MixpanelAPI
-import org.json.JSONObject
+import kotlin.math.cos
 
 
 /**
@@ -15,34 +14,59 @@ import org.json.JSONObject
  */
 class Analytix {
 
+
+    private val EVENT_USED_AMA = "used_ama"
+    private val EVENT_USED_PRO = "used_pro"
+    private val MIX_ADS = "mix_ads"
+    private val EVENT_AD_CLICKED = "event_ad_clicked"
+    private val EVENT_AD_SHOWN = "event_ad_shown"
+    private val EVENT_AD_FAILED = "event_ad_failed"
+
+
     //FIREBASE USAGE
-    fun reportFirebaseEvent(eventName: String) {
-        Firebase.analytics.logEvent(eventName, packageParams())
-    }
-    private fun packageParams(): Bundle {
-        val bundle = Bundle()
-        bundle.putString("app_version", BuildConfig.VERSION_NAME)
-        bundle.putString("os_version", Build.VERSION.RELEASE)
-        bundle.putString("model_version", Build.MODEL)
-        return bundle
-    }
+
+
     //MixPanel Usage
-    private fun getMixPanelInstance(appContext: Context): MixpanelAPI {
-        return MixpanelAPI.getInstance(appContext, MixPanelConstants.mixpanelId, false)
+    /** ADS **/
+    fun reportAmaUsed(appContext: Context) {
+        MixPanelController().reportChatUsed(appContext, EVENT_USED_AMA, "ama")
     }
 
-    fun reportUsageEvent(appContext: Context, eventName: String, eventValue: String) {
-        val mixPanelInstance = getMixPanelInstance(appContext)
-        val props = JSONObject()
-        props.put(eventName, eventValue)
-        mixPanelInstance.track(MixPanelConstants.MIX_USAGE, props)
+    fun reportProUsed(appContext: Context, proTitle: String) {
+        MixPanelController().reportChatUsed(appContext, EVENT_USED_PRO, proTitle)
     }
 
-    fun reportErrorEvent(appContext: Context, eventName: String, eventValue: String) {
-        val mixPanelInstance = getMixPanelInstance(appContext)
-        val props = JSONObject()
-        props.put(eventName, eventValue)
-        mixPanelInstance.track(MixPanelConstants.MIX_ERROR, props)
+    fun reportCost(appContext: Context, cost: String, adsShown: String) {
+        MixPanelController().reportConvoCost(appContext, cost, adsShown)
+    }
+
+
+    /** ADS **/
+    fun reportAdClicked(appContext: Context) {
+        MixPanelController().reportUsageEvent(
+            appContext = appContext,
+            eventName = MIX_ADS,
+            eventValueName = EVENT_AD_CLICKED,
+            eventValue = "true"
+        )
+    }
+
+    fun reportAdFailed(appContext: Context) {
+        MixPanelController().reportUsageEvent(
+            appContext = appContext,
+            eventName = MIX_ADS,
+            eventValueName = EVENT_AD_CLICKED,
+            eventValue = "true"
+        )
+    }
+
+    fun reportAdShown(appContext: Context) {
+        MixPanelController().reportUsageEvent(
+            appContext = appContext,
+            eventName = MIX_ADS,
+            eventValueName = EVENT_AD_CLICKED,
+            eventValue = "true"
+        )
     }
 
 }

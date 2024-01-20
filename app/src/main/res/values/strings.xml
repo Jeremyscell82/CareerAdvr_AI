@@ -6,7 +6,7 @@
 
     <!-- VERSION -->
     <string name="version_title">What\'s new in version %s</string>
-    <string name="version_message">Everything!\nThis is an early version and many changes are coming!</string>
+    <string name="version_message">Everything!\nI am still building it, so please be patient!</string>
 
     <!-- FORCE UPDATE -->
     <string name="force_update_title">A new update is available</string>

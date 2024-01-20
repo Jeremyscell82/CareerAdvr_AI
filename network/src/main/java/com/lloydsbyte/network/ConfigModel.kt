@@ -43,6 +43,8 @@ class ConfigModel {
         val title: String,
         @SerializedName("description")
         val description: String,
+        @SerializedName("instructions")
+        val instructions: String,
         @SerializedName("prompt")
         val systemPrompt: String,
         @SerializedName("paywall")

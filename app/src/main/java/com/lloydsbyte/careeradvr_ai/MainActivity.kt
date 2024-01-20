@@ -286,13 +286,7 @@ open class MainActivity : IAP_Helper() {
         mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdClicked() {
                 // Called when a click is recorded for an ad.
-                com.lloydsbyte.careeradvr_ai.analytics.Analytix()
-                    .reportFirebaseEvent(com.lloydsbyte.careeradvr_ai.analytics.FirebaseController.EVENT_AD_CLICKED)
-                com.lloydsbyte.careeradvr_ai.analytics.Analytix().reportUsageEvent(
-                    applicationContext,
-                    MixPanelConstants.EVENT_AD_CLICKED,
-                    "true"
-                )
+                Analytix().reportAdClicked(applicationContext)
             }
 
             override fun onAdDismissedFullScreenContent() {
@@ -304,12 +298,7 @@ open class MainActivity : IAP_Helper() {
 
             override fun onAdFailedToShowFullScreenContent(p0: AdError) {
                 // Called when ad fails to show.
-                Analytix().reportFirebaseEvent(com.lloydsbyte.careeradvr_ai.analytics.FirebaseController.EVENT_AD_FAILED)
-                Analytix().reportUsageEvent(
-                    applicationContext,
-                    MixPanelConstants.EVENT_AD_FAILED,
-                    "true"
-                )
+                Analytix().reportAdFailed(applicationContext)
 //                mInterstitialAd = null
             }
 
@@ -319,6 +308,7 @@ open class MainActivity : IAP_Helper() {
 
             override fun onAdShowedFullScreenContent() {
                 // Called when ad is shown.
+                Analytix().reportAdShown(applicationContext)
             }
         }
     }

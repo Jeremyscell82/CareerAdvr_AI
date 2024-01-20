@@ -102,15 +102,14 @@
             android:id="@+id/chat_config_fab"
             style="@style/mainFab"
             android:layout_marginBottom="@dimen/default_small_padding"
-            app:fabSize="mini"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="Back Button"
-            android:src="@drawable/ic_tune"
+            android:src="@drawable/ic_info"
             app:elevation="@dimen/default_button_elevation"
             app:layout_constraintBottom_toTopOf="@id/chat_input_layout"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"/>
+            />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/chat_send_fab"
