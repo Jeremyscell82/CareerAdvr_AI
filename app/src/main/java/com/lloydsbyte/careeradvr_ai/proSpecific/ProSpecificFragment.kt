@@ -49,7 +49,7 @@ class ProSpecificFragment : Fragment() {
             }
             proRecyclerview.apply {
                 adapter = proAdapter
-                layoutManager = GridLayoutManager(requireActivity(), 2, GridLayoutManager.VERTICAL, false)
+                layoutManager = GridLayoutManager(requireActivity(), 1, GridLayoutManager.VERTICAL, false)
                 proAdapter.initAdapter(savedInstanceState== null, this, promptsList)
                 proAdapter.onItemClicked = {
                     Analytix().reportProUsed(requireActivity().applicationContext, it.title)

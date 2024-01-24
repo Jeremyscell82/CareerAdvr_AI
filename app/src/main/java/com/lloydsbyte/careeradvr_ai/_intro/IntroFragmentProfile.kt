@@ -37,6 +37,7 @@ class IntroFragmentProfile : Fragment() {
                     prefs.setUserName(profileNameField.text.toString())
                     UtilzViewHelper.hideSoftKeyboard(requireActivity(), binding.profileAgeField)
 //                    findNavController().navigate(R.id.action_profile_to_signin)
+                    StoredPref(requireActivity()).recordNewUser()
                     (requireActivity() as IntroSectionActivity).initiateApp()
                 }
             }

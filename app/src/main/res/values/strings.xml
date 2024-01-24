@@ -6,7 +6,7 @@
 
     <!-- VERSION -->
     <string name="version_title">What\'s new in version %s</string>
-    <string name="version_message">Everything!\nI am still building it, so please be patient!</string>
+    <string name="version_message">Everything!\nThis is the initial release, if all goes well this will be the final version! Give the app a test drive and improve your career while doing it!</string>
 
     <!-- FORCE UPDATE -->
     <string name="force_update_title">A new update is available</string>
@@ -20,7 +20,7 @@
     <string name="intro_landing_body">I am an Artificial Intelligence based chat bot designed and built by Lloyd\'sByte LLC and powered by OpenAI\'s ChatGPT.</string>
     <string name="intro_created_by">A Lloyd\'sByte Creation</string>
     <string name="intro_next_button">Next</string>
-    <string name="intro_landing_terms">With that being said, I want to make sure you are aware of my limitations. I can not control ChatGPT or it\'s responses, I have created carefully curated phrases to help you achieve the finest responses from ChatGPT. This application was created with the  intention to help assist you and NOT to used as a replacement for a professional accountant.</string>
+    <string name="intro_landing_terms">With that being said, I want to make sure you are aware of my limitations. I can not control ChatGPT or it\'s responses, I have created carefully curated phrases to help you achieve the finest responses from ChatGPT. This application was created with the  intention to help assist you and NOT to be used as a replacement for a professional.</string>
     <string name="intro_landing_terms_html">To learn more about ChatGPT\'s terms and policies click <a href="https://openai.com/policies">Here</a></string>
     <string name="intro_terms_understood">I understand and agree the developer is not liable.</string>
     <string name="intro_profile_title">But first…</string>

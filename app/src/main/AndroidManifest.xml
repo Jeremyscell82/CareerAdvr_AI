@@ -51,7 +51,7 @@
             android:value="true" /><!-- #nifty, set to false before launching to the store, set to true to enable logging -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-8308745676637485~7141017011" /><!--#Needs App ID, this is a demo from https://gist.github.com/prakashpun/d19e34c5710f8b7f40f828c7df3e887c -->
+            android:value="ca-app-pub-8308745676637485~1983380482" /><!--#Needs App ID, this is a demo from https://gist.github.com/prakashpun/d19e34c5710f8b7f40f828c7df3e887c -->
 
         <activity
             android:name="._intro.IntroSectionActivity"
