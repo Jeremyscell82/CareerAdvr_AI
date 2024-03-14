@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Career Advr</string>
+    <string name="app_name">Career Advisor</string>
     <string name="bot_name">Alyssa</string>
     <string name="company_name">LloydsByte LLC</string>
-    <string name="default_notification_channel_id">LLOYDSBYTE.APPKIT-CHATGPT</string>
+    <string name="default_notification_channel_id">LLOYDSBYTE.APPKIT-CAREER_ADVISOR</string>
 
     <!-- VERSION -->
     <string name="version_title">What\'s new in version %s</string>

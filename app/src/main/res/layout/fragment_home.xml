@@ -45,6 +45,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintWidth_max="420dp"
         android:scrollbars="none"
+        android:paddingBottom="60dp"
+        android:clipToPadding="false"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout

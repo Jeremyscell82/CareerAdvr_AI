@@ -9,22 +9,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.lloydsbyte.careeradvr_ai.MainActivity
 import com.lloydsbyte.careeradvr_ai.R
 import com.lloydsbyte.careeradvr_ai.analytics.Analytix
-import com.lloydsbyte.careeradvr_ai.chat.chat_menu.BottomsheetMenu
-import com.lloydsbyte.careeradvr_ai.chat.chat_menu.MenuInterface
 import com.lloydsbyte.careeradvr_ai.databinding.FragmentChatBinding
 import com.lloydsbyte.careeradvr_ai.utilz.GptTokenController
 import com.lloydsbyte.careeradvr_ai.utilz.Gpt_Helper
+import com.lloydsbyte.chap_e.chat.menu.MenuDialogFragment
+import com.lloydsbyte.chap_e.chat.menu.MenuInterface
 import com.lloydsbyte.core.ErrorController
-import com.lloydsbyte.core.custombottomsheet.BottomsheetConfirm
 import com.lloydsbyte.core.custombottomsheet.BottomsheetEditFieldFragment
 import com.lloydsbyte.core.custombottomsheet.ConfirmInterface
 import com.lloydsbyte.core.custombottomsheet.ErrorBottomsheet
-import com.lloydsbyte.core.custombottomsheet.VersionBottomsheet
 import com.lloydsbyte.core.customdialog.CustomDialogs
 import com.lloydsbyte.core.search_bottomsheet.BottomsheetSearchInterface
+import com.lloydsbyte.core.utilz.Utilz
 import com.lloydsbyte.core.utilz.UtilzSendItHelper
 import com.lloydsbyte.core.utilz.UtilzViewHelper
 import com.lloydsbyte.database.DatabaseController
@@ -83,8 +83,8 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
             }
             chatMenuFab.setOnClickListener {
                 //Show bottomsheet with menu items,
-                val bottomsheet = BottomsheetMenu(this@ChatFragment)
-                bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
+                val menuDialog = MenuDialogFragment(this@ChatFragment)
+                menuDialog.show(requireActivity().supportFragmentManager, menuDialog.tag)
             }
             if (viewModel.chatThread.isEmpty())chatMenuFab.hide()
             chatTitle.text = viewModel.chatTitle
@@ -241,32 +241,6 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
     }
 
-    override fun onItemClicked(item: String) {
-        //Menu callback filter
-        when(item) {
-            "save"-> {
-                if (viewModel.convoHeaderModel == null){
-                  //Show create name bottomsheet
-                    //Display Bottomsheet to get name of conversation
-                    val bottomsheet = BottomsheetEditFieldFragment.createInstance(
-                        hint = "Pick a name to save the conversation under",
-                        phrase = "",
-                        number = false,
-                        this@ChatFragment
-                    )
-                    bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
-                } else {
-                    //Update conversation
-                    saveToDatabase()
-                }
-            }
-            "share"-> {
-                val sharableChat =  Gpt_Helper().createSharableConversation(viewModel.chatThread)
-                UtilzSendItHelper().sendChat(requireActivity(), sharableChat)
-            }
-        }
-    }
-
     private fun saveConversation(saveName: String) {
         viewModel.convoHeaderModel = ChatHeaderModel(
             dbKey = 0,
@@ -302,6 +276,36 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
     }
 
     override fun onActionPressed() {
+    }
+
+    override fun onSave() {
+        if (viewModel.convoHeaderModel == null){
+            //Show create name bottomsheet
+            //Display Bottomsheet to get name of conversation
+            val bottomsheet = BottomsheetEditFieldFragment.createInstance(
+                hint = "Pick a name to save the conversation under",
+                phrase = "",
+                number = false,
+                this@ChatFragment
+            )
+            bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
+        } else {
+            //Update conversation
+            saveToDatabase()
+        }
+    }
+
+    override fun onShare() {
+        val sharableChat =  Gpt_Helper().createSharableConversation(viewModel.chatThread)
+        UtilzSendItHelper().sendChat(requireActivity(), sharableChat)
+    }
+
+    override fun onReport() {
+        UtilzSendItHelper().contactDeveloperWithUID(
+            requireActivity(),
+            Utilz.getVersionName(requireActivity()),
+            FirebaseAuth.getInstance().currentUser?.uid ?: "NA"
+        )
     }
 
 }

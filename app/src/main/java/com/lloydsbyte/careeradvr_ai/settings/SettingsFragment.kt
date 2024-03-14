@@ -53,92 +53,90 @@ class SettingsFragment : Fragment(), BottomSheetHelper.BottomsheetSelectionInter
             settingsBackFab.setOnClickListener {
                 findNavController().popBackStack()
             }
-            settingsLayout.apply {
-                //Upgrade your experience
-                settingsUpgradeRmAdsLayout.setOnClickListener {
-                    CustomDialogs.snackbar(binding.root, "Upgrade option coming soon")
-                }
-                settingsUpgradeSubscribeLayout.setOnClickListener {
-                    CustomDialogs.snackbar(binding.root, "Subscribe option coming soon")
-                }
+            //Upgrade your experience
+            settingsUpgradeRmAdsLayout.setOnClickListener {
+                CustomDialogs.snackbar(binding.root, "Upgrade option coming soon")
+            }
+            settingsUpgradeSubscribeLayout.setOnClickListener {
+                CustomDialogs.snackbar(binding.root, "Subscribe option coming soon")
+            }
 
-                //Profile
-                settingsProfileNameSubtitle.text = resources.getString(
-                    R.string.settings_profile_name_subtitle,
-                    StoredPref(requireActivity()).getUserName()
+            //Profile
+            settingsProfileNameSubtitle.text = resources.getString(
+                R.string.settings_profile_name_subtitle,
+                StoredPref(requireActivity()).getUserName()
+            )
+            settingsProfileNameLayout.setOnClickListener {
+                val bottomsheet = BottomsheetEditFieldFragment.createInstance(
+                    "Edit name",
+                    StoredPref(requireActivity()).getUserName(),
+                    false,
+                    this@SettingsFragment
                 )
-                settingsProfileNameLayout.setOnClickListener {
-                    val bottomsheet = BottomsheetEditFieldFragment.createInstance(
-                        "Edit name",
-                        StoredPref(requireActivity()).getUserName(),
-                        false,
-                        this@SettingsFragment
-                    )
-                    storedPrefId = StoredPref(requireActivity()).PROFILE_NAME
-                    bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
-                }
+                storedPrefId = StoredPref(requireActivity()).PROFILE_NAME
+                bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
+            }
 
 
-                settingsProfileAgeSubtitle.text = resources.getString(
-                    R.string.settings_profile_age_subtitle,
-                    StoredPref(requireActivity()).getUserAge()
+            settingsProfileAgeSubtitle.text = resources.getString(
+                R.string.settings_profile_age_subtitle,
+                StoredPref(requireActivity()).getUserAge()
+            )
+            settingsProfileAgeLayout.setOnClickListener {
+                val bottomsheet = BottomsheetEditFieldFragment.createInstance(
+                    "Edit age",
+                    StoredPref(requireActivity()).getUserAge(),
+                    true,
+                    this@SettingsFragment
                 )
-                settingsProfileAgeLayout.setOnClickListener {
-                    val bottomsheet = BottomsheetEditFieldFragment.createInstance(
-                        "Edit age",
-                        StoredPref(requireActivity()).getUserAge(),
-                        true,
-                        this@SettingsFragment
-                    )
-                    storedPrefId = StoredPref(requireActivity()).PROFILE_AGE
-                    bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
-                }
+                storedPrefId = StoredPref(requireActivity()).PROFILE_AGE
+                bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
+            }
 
-                //App Settings
-                settingsRateLayout.setOnClickListener {
-                    Utilz.rateApp(requireActivity())
-                }
-                settingsShareLayout.setOnClickListener {
-                    UtilzSendItHelper().shareApp(requireActivity())
-                }
-                settingsAboutLayout.setOnClickListener {
-                    val bottomsheet = SettingsAboutBottomsheet()
-                    bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
-                }
-                settingsContactLayout.setOnClickListener {
-                    UtilzSendItHelper().contactDeveloper(
-                        requireActivity(),
-                        Utilz.getVersionName(requireActivity())
-                    )
-                }
-                settingsContactLayout.setOnLongClickListener {
-                    UtilzSendItHelper().contactDeveloperWithUID(
-                        requireActivity(),
-                        Utilz.getVersionName(requireActivity()),
-                        FirebaseAuth.getInstance().currentUser?.uid ?: "NA"
-                    )
-                    true
-                }
+            //App Settings
+            settingsRateLayout.setOnClickListener {
+                Utilz.rateApp(requireActivity())
+            }
+            settingsShareLayout.setOnClickListener {
+                UtilzSendItHelper().shareApp(requireActivity())
+            }
+            settingsAboutLayout.setOnClickListener {
+                val bottomsheet = SettingsAboutBottomsheet()
+                bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
+            }
+            settingsContactLayout.setOnClickListener {
+                UtilzSendItHelper().contactDeveloper(
+                    requireActivity(),
+                    Utilz.getVersionName(requireActivity())
+                )
+            }
+            settingsContactLayout.setOnLongClickListener {
+                UtilzSendItHelper().contactDeveloperWithUID(
+                    requireActivity(),
+                    Utilz.getVersionName(requireActivity()),
+                    FirebaseAuth.getInstance().currentUser?.uid ?: "NA"
+                )
+                true
+            }
 
-                /**
-                 *  Debug Panel
-                 */
-                settingsDebugCardview.visibility =
-                    if (Utilz.isInDebugMode(requireActivity())) View.VISIBLE else View.GONE
+            /**
+             *  Debug Panel
+             */
+            settingsDebugCardview.visibility =
+                if (Utilz.isInDebugMode(requireActivity())) View.VISIBLE else View.GONE
 
-                settingsDebugTokensSubtitle.text = StoredPref(requireActivity()).getTokenCount().toString()
+            settingsDebugTokensSubtitle.text =
+                StoredPref(requireActivity()).getTokenCount().toString()
 
-                settingsDebugResetLayout.setOnClickListener {
-                    UserProfileHelper.updateUsageLimit(0)
-                    UserProfileHelper.updateDateLimit(0L)
-                }
-                settingsDebugMiscLayout.setOnClickListener {
+            settingsDebugResetLayout.setOnClickListener {
+                UserProfileHelper.updateUsageLimit(0)
+                UserProfileHelper.updateDateLimit(0L)
+            }
+            settingsDebugMiscLayout.setOnClickListener {
 //                    UserProfileHelper.updateUserStatus("FREE")
 //                    UserProfileHelper.updateDateLimit(UtilzDateHelper(UtilzDateHelper.DF_TIMEDATE).buildMillisDate())
 //                    UserProfileHelper.updateUsageLimit()
-                    (requireActivity() as MainActivity).fireOffAd()
-                }
-
+                (requireActivity() as MainActivity).fireOffAd()
             }
 
 
@@ -215,10 +213,10 @@ class SettingsFragment : Fragment(), BottomSheetHelper.BottomsheetSelectionInter
     override fun onPhraseEntered(query: String) {
         StoredPref(requireActivity()).writeString(storedPrefId, query)
         if (storedPrefId == StoredPref(requireActivity()).PROFILE_NAME) {
-            binding.settingsLayout.settingsProfileNameSubtitle.text =
+            binding.settingsProfileNameSubtitle.text =
                 resources.getString(R.string.settings_profile_name_subtitle, query)
         } else if (storedPrefId == StoredPref(requireActivity()).PROFILE_AGE) {
-            binding.settingsLayout.settingsProfileAgeSubtitle.text =
+            binding.settingsProfileAgeSubtitle.text =
                 resources.getString(R.string.settings_profile_age_subtitle, query)
         }
         storedPrefId = ""
