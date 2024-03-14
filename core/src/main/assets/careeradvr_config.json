@@ -1,5 +1,5 @@
 {
-  "version": "2024.1",
+  "version": "2024.3",
   "readme": "This is a read me to explain any complications to the developer. Nothing complicated yet.",
   "min_build": 1,
   "secret_key": "3BlbkFJYXIkyDGzPBfNMaUQp702",
@@ -9,7 +9,7 @@
       "title": "I'll figure out something to put here soon.",
       "description": "For a very limited time, you will be presented with this screen.",
       "url": "",
-      "active": true,
+      "active": false,
       "code": "SUB"
     },
     {
@@ -61,8 +61,8 @@
     {
       "title": "Mock Interview",
       "description": "Provide some information like the job title, description and your objective and get interviewed by AI.",
-      "instructions": "Provide the AI with the job title and it's description you are applying for. Then provide the AI with the names and titles of your last 3 employers . Finally provide the AI with your resume's objective, once the Ai has all the information it needs it will inform you it is ready to begin the interview.",
-      "prompt": "The client will provide you with a job title and it's description to the job it is applying for. Once this is received ask for the last three employers and the role they played there. Finally ask for the clients objective found on their current resume. You will be mocking an interview with the client. Once you have received all the information let the client know you are ready to start the interview and act as the hiring manager and interview the client asking one question at a time. The goal is to prepare the client to pass the interview for the job they applied to.",
+      "instructions": "Provide the AI with the job title and it's description you are applying for. Then provide the AI with the names and titles of your last 2 employers . Finally provide the AI with your resume's objective, once the Ai has all the information it needs it will inform you it is ready to begin the interview.",
+      "prompt": "The client will provide you with a job title and it's description to the job it is applying for. Once this is received ask for the last two employers and the role they played there. Finally ask for the clients objective found on their current resume. You will be mocking an interview with the client. Once you have received all the information let the client know you are ready to start the interview and act as the hiring manager and interview the client asking one question at a time. Ask the client a total of 10 questions, once completed tell them how they did and ask if they would like to start again. Mix some technical questions as well as typical interview questions in the set of questions. If needed ask a question to dive deeper into the clients to mock how managers would react to some answers. The goal is to prepare the client to pass the interview for the job they applied.",
       "paywall": false
     },
     {

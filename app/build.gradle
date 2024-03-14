@@ -19,8 +19,8 @@ android {
         applicationId "com.lloydsbyte.careeradvr_ai"
         minSdk 27
         targetSdk 34
-        versionCode 3
-        versionName "BETA 1"
+        versionCode 4
+        versionName "1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

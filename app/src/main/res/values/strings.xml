@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Career Advr AI</string>
+    <string name="app_name">Career Advr</string>
     <string name="bot_name">Alyssa</string>
     <string name="company_name">LloydsByte LLC</string>
     <string name="default_notification_channel_id">LLOYDSBYTE.APPKIT-CHATGPT</string>
 
     <!-- VERSION -->
     <string name="version_title">What\'s new in version %s</string>
-    <string name="version_message">Everything!\nThis is the initial release, if all goes well this will be the final version! Give the app a test drive and improve your career while doing it!</string>
+    <string name="version_message">Everything!\nThis is the initial release of Career Advr. Enjoy and good luck on your job hunt, I hope this app helps you as it did for me!</string>
 
     <!-- FORCE UPDATE -->
     <string name="force_update_title">A new update is available</string>
