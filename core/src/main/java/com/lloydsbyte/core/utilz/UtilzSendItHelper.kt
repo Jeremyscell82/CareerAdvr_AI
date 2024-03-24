@@ -10,9 +10,9 @@ import java.util.UUID
 
 class UtilzSendItHelper {
     companion object {
-        val contactEmail: String = "jeremylloyd@lloydsbyte.com"
-        val errorString: String = "No email found, please email jeremylloyd@lloydsbyte.com"
-        val appUrl: String = "https://play.google.com/store/apps/details?id=com.lloydsbyte.base_chap"
+        val contactEmail: String = "support@lloydsbyte.com"
+        val errorString: String = "No email found, please email support@lloydsbyte.com"
+        val appUrl: String = "https://play.google.com/store/apps/details?id=com.lloydsbyte.careeradvr_ai"
         val profileUrl: String = "https://play.google.com/store/apps/dev?id=8668340116169178413"
     }
 
@@ -21,7 +21,7 @@ class UtilzSendItHelper {
         val i = Intent(Intent.ACTION_SEND)
         i.type = "message/rfc822"
         i.putExtra(Intent.EXTRA_EMAIL, arrayOf(contactEmail))
-        i.putExtra(Intent.EXTRA_SUBJECT, "CareerAdvr AI Reporting bug")
+        i.putExtra(Intent.EXTRA_SUBJECT, "Career Advisor Reporting bug")
         i.putExtra(Intent.EXTRA_TEXT, "I am on version $version and found a bug...")
         try {
             context.startActivity(Intent.createChooser(i, "Send email..."))
@@ -38,7 +38,7 @@ class UtilzSendItHelper {
         val i = Intent(Intent.ACTION_SEND)
         i.type = "message/rfc822"
         i.putExtra(Intent.EXTRA_EMAIL, arrayOf(contactEmail))
-        i.putExtra(Intent.EXTRA_SUBJECT, "Contact Request - CareerAdvr AI :$version")
+        i.putExtra(Intent.EXTRA_SUBJECT, "Contact Request - Career Advisor :$version")
         try {
             context.startActivity(Intent.createChooser(i, "Send email..."))
         } catch (ex: ActivityNotFoundException) {
@@ -54,7 +54,7 @@ class UtilzSendItHelper {
         val i = Intent(Intent.ACTION_SEND)
         i.type = "message/rfc822"
         i.putExtra(Intent.EXTRA_EMAIL, arrayOf(contactEmail))
-        i.putExtra(Intent.EXTRA_SUBJECT, "Support Request with UID\nCareerAdvr AI :$version\nUUID:${UID}")
+        i.putExtra(Intent.EXTRA_SUBJECT, "Support Request with UID\nCareer Advisor :$version\nUUID:${UID}")
         try {
             context.startActivity(Intent.createChooser(i, "Send email..."))
         } catch (ex: ActivityNotFoundException) {

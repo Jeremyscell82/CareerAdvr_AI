@@ -145,10 +145,10 @@ Lower values for temperature result in more consistent outputs, while higher val
     <string name="settings_rate">Rate App</string>
     <string name="settings_rate_subtitle">Let the world know how you feel</string>
     <string name="settings_share">Share App</string>
-    <string name="settings_share_subtitle">Send others a link to download AccuBooks AI</string>
-    <string name="settings_about">About AccuBooks AI</string>
+    <string name="settings_share_subtitle">Send others a link to download Career Advisor</string>
+    <string name="settings_about">About Career Advisor</string>
     <string name="settings_about_subtitle">Learn more about the developer and this app</string>
-    <string name="settings_about_message">About this…\n\nAccuBooks AI was designed and created by LloydsByte LLC to help get professional grade answers at a reasonable cost. What started off as an personal project, slowly became something I want to share with others.\n\nSpecial thanks:\nEarly Adopters who helped fine tune the app.</string>
+    <string name="settings_about_message">About this…\n\Career Advisor AI was designed and created by LloydsByte LLC to help you get that dream job. What started off as an personal project, slowly became something I want to share with others.\n\nSpecial thanks:\nEarly Adopters who helped fine tune the app.</string>
     <string name="settings_special_thanks">Special thanks</string>
     <string name="settings_special_subitle">Saying a special thank you to those who tested Chap-E</string>
     <string name="settings_contact">Contact Us</string>
