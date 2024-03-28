@@ -32,6 +32,7 @@ class StoredPref(
     private val GPT_TOKENS_USED = "appkit.gpt.tokens_used"
 
     /** TOKENS **/
+    private val GPT_TOKEN_LAST_USED_DATE = "appkit.gpt_token_last_used"
     private val GPT_TOKEN_COUNTER = "appkit.gpt_token_counter"
     private val GPT_TEMPERATURE = "appkit.gpt_temperature"
 
@@ -85,6 +86,14 @@ class StoredPref(
 
     fun getTokenCount(): Int {
         return readInt(GPT_TOKEN_COUNTER, 0)
+    }
+
+    fun updateTokenLastUsedDate(dateInStr: String) {
+        writeString(GPT_TOKEN_LAST_USED_DATE, dateInStr)
+    }
+
+    fun getTokenLastUsedDate(): String {
+        return readString(GPT_TOKEN_LAST_USED_DATE, "")
     }
 
     /** Ads **/

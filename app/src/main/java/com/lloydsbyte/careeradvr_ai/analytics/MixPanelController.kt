@@ -9,10 +9,14 @@ import org.json.JSONObject
  */
 class MixPanelController : MixPanelConstants() {
 
-    private val MIX_CHAT = "mix_chat"
-    private val EVENT_CONVO_COST = "mix_convo_cost"
-
-    private val EVENT_CONVO_ADS_SHOWN= "mix_convo_ads_shown"
+    private val mixpanel_cost = "mix_panel"
+    private val mixpanel_event_cost_0 = "mix_cost_nan"
+    private val mixpanel_event_cost_0_1000 = "mix_cost_0-1000"
+    private val mixpanel_event_cost_1001_2000 = "mix_cost_1001-2000"
+    private val mixpanel_event_cost_2001_3000 = "mix_cost_2001-3000"
+    private val mixpanel_event_cost_3001_5000 = "mix_cost_3001-5000"
+    private val mixpanel_event_cost_5001_10000 = "mix_cost_5001-10000"
+    private val mixpanel_event_cost_toomuch = "mix_cost_10001_"
 
 
     private fun getMixPanelInstance(appContext: Context): MixpanelAPI {
@@ -20,6 +24,36 @@ class MixPanelController : MixPanelConstants() {
             mixpanelId, false)
     }
 
+    //Call this function before resetting the users daily count
+    fun reportUsage(appContext: Context, count: Int) {
+        val mixPanelInstance = getMixPanelInstance(appContext)
+        val prop = JSONObject()
+        prop.put(getUsageCategory(count), count)
+        mixPanelInstance.track(mixpanel_cost, prop)
+    }
+
+    private fun getUsageCategory(count: Int): String {
+        return when {
+            count in 1..1000 -> mixpanel_event_cost_0_1000
+            count in 1001..2000 -> mixpanel_event_cost_1001_2000
+            count in 2001..3000 -> mixpanel_event_cost_2001_3000
+            count in 3001..5000 -> mixpanel_event_cost_3001_5000
+            count in 5001..10000 -> mixpanel_event_cost_5001_10000
+            count > 10000 -> mixpanel_event_cost_toomuch
+            else -> mixpanel_event_cost_0
+        }
+    }
+
+
+
+
+
+
+    /** OLD CODE **/
+    private val MIX_CHAT = "mix_chat"
+    private val EVENT_CONVO_COST = "mix_convo_cost"
+
+    private val EVENT_CONVO_ADS_SHOWN= "mix_convo_ads_shown"
     fun reportChatUsed(appContext: Context, eventName: String, eventVlaue: String) {
         val mixPanelInstance = getMixPanelInstance(appContext)
         val props = JSONObject()

@@ -100,7 +100,7 @@ open class MainActivity : IAP_Helper() {
 //        setupNavBar()
         preparePermissions()
 //        initializeBilling()//Todo JL remove
-        initializeAds()
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_controller) as NavHostFragment
         navController = navHostFragment.navController
@@ -367,6 +367,8 @@ open class MainActivity : IAP_Helper() {
     override fun onResume() {
         super.onResume()
 
+        initializeAds()
+        
         //If one wants to handle the permission request, here is where one can do so
         if (locationPermissionRequested && PermissionCheck.isLocationGranted(this)) {
             CustomDialogs.snackbar(binding.root, "Location Permission Granted")
@@ -397,6 +399,7 @@ open class MainActivity : IAP_Helper() {
         super.onDestroy()
         backStackTimer.cancel()
     }
+
 
     /**
      * Getters for the config file

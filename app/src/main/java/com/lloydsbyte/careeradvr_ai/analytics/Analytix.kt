@@ -41,6 +41,7 @@ class Analytix {
     }
 
 
+
     /** ADS **/
     fun reportAdClicked(appContext: Context) {
         MixPanelController().reportUsageEvent(
