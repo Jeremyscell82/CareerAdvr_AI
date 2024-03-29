@@ -52,7 +52,7 @@ class ProSpecificFragment : Fragment() {
                 layoutManager = GridLayoutManager(requireActivity(), 1, GridLayoutManager.VERTICAL, false)
                 proAdapter.initAdapter(savedInstanceState== null, this, promptsList)
                 proAdapter.onItemClicked = {
-                    Analytix().reportProUsed(requireActivity().applicationContext, it.title)
+                    Analytix().reportProUsed(requireActivity().applicationContext, it.id)
                     val bundle = Bundle()
                     bundle.putString(ChatFragment.PROMPT_TITLE, it.title)
                     bundle.putString(ChatFragment.PROMPT_KEY,prepPrompt(it.title, it.systemPrompt))

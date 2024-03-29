@@ -18,10 +18,23 @@ class MixPanelController : MixPanelConstants() {
     private val mixpanel_event_cost_5001_10000 = "mix_cost_5001-10000"
     private val mixpanel_event_cost_toomuch = "mix_cost_10001_"
 
+    companion object {
+        val mixpanel_event_first_timer = "mix_new_user"
+        val mixpanel_event_new_chat = "mix_chat_new"
+        val mixpanel_event_chat_subj_general = "mix_chat_subj_general"
+        val mixpanel_event_chat_subj_history = "mix_chat_subj_history"
+        val mixpanel_event_chat_subj_obj_tuner = "mix_chat_subj_obj_tuner"
+        val mixpanel_event_chat_subj_obj_creator =  "mix_chat_subj_obj_creator"
+        val mixpanel_event_chat_subj_cv = "mix_chat_subj_cv"
+        val mixpanel_event_chat_subj_interview_tips = "mix_chat_subj_interview_tips"
+        val mixpanel_event_chat_subj_mock_interview = "mix_chat_subj_mock_interview"
+        val mixpanel_event_chat_subj_career_advice = "mix_chat_subj_career_adv"
+    }
+
 
     private fun getMixPanelInstance(appContext: Context): MixpanelAPI {
         return MixpanelAPI.getInstance(appContext.applicationContext,
-            mixpanelId, false)
+            mixpanelId, true)
     }
 
     //Call this function before resetting the users daily count

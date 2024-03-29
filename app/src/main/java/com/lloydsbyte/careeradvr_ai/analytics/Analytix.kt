@@ -15,8 +15,8 @@ import kotlin.math.cos
 class Analytix {
 
 
-    private val EVENT_USED_AMA = "used_ama"
-    private val EVENT_USED_PRO = "used_pro"
+    private val EVENT_USED_AMA = "used_chat_subject_ama"
+    private val EVENT_USED_PRO = "mix_chat_subject_selected"
     private val MIX_ADS = "mix_ads"
     private val EVENT_AD_CLICKED = "event_ad_clicked"
     private val EVENT_AD_SHOWN = "event_ad_shown"
@@ -26,14 +26,30 @@ class Analytix {
     //FIREBASE USAGE
 
 
-    //MixPanel Usage
-    /** ADS **/
-    fun reportAmaUsed(appContext: Context) {
-        MixPanelController().reportChatUsed(appContext, EVENT_USED_AMA, "ama")
+    /** MIXPANEL **/
+    fun reportTokenCount(appContext: Context, tokenCount: Int) {
+        MixPanelController().reportUsage(appContext, tokenCount)
     }
 
-    fun reportProUsed(appContext: Context, proTitle: String) {
-        MixPanelController().reportChatUsed(appContext, EVENT_USED_PRO, proTitle)
+    fun reportAmaUsed(appContext: Context) {
+        MixPanelController().reportChatUsed(appContext, EVENT_USED_AMA, MixPanelController.mixpanel_event_chat_subj_general)
+    }
+
+    fun reportProUsed(appContext: Context, proId: Int) {
+        MixPanelController().reportChatUsed(appContext, EVENT_USED_PRO, getProEventName(proId))
+    }
+
+    private fun getProEventName(position: Int): String {
+        return when (position) {
+            0->MixPanelController.mixpanel_event_chat_subj_history
+            1->MixPanelController.mixpanel_event_chat_subj_obj_tuner
+            2->MixPanelController.mixpanel_event_chat_subj_obj_creator
+            3->MixPanelController.mixpanel_event_chat_subj_cv
+            4->MixPanelController.mixpanel_event_chat_subj_interview_tips
+            5->MixPanelController.mixpanel_event_chat_subj_mock_interview
+            6->MixPanelController.mixpanel_event_chat_subj_career_advice
+            else->MixPanelController.mixpanel_event_chat_subj_general
+        }
     }
 
     fun reportCost(appContext: Context, cost: String, adsShown: String) {

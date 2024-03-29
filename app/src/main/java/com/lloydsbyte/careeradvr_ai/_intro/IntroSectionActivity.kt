@@ -129,7 +129,6 @@ class IntroSectionActivity: AppCompatActivity(), ConfigFileInterface {
                 //User has already pulled today
                 launchApp()
             } else {
-                Toast.makeText(this, "Warming up server...", Toast.LENGTH_LONG).show()
                 //Pull new config, for now use stored file in assets
                 networkController.pullConfigFile(this)
             }

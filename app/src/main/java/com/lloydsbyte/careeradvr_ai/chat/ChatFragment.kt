@@ -35,6 +35,7 @@ import com.lloydsbyte.network.NetworkConstants
 import com.lloydsbyte.network.NetworkController
 import com.lloydsbyte.network.interfaces.GptQuestionInterface
 import com.lloydsbyte.network.responses.ChatGptResponse
+import timber.log.Timber
 
 class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, BottomsheetSearchInterface,
     DatabaseInterface, ConfirmInterface {
@@ -223,6 +224,7 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
     private fun maxLimitReached() {
         //Remove input field layout
         binding.chatInputSectionLayout.visibility = View.GONE
+
         //Display dialog
         CustomDialogs.launchDialog(
             sfm = requireActivity().supportFragmentManager,

@@ -46,19 +46,7 @@
         app:layout_constraintBottom_toBottomOf="@id/chat_back_fab"
         tools:text="Title here" />
 
-    <TextView
-        android:id="@+id/chat_cost"
-        style="@style/fontSmaller_italic"
-        android:textSize="12sp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:paddingStart="@dimen/default_padding"
-        app:layout_constraintStart_toEndOf="@id/chat_back_fab"
-        app:layout_constraintEnd_toStartOf="@id/chat_menu_fab"
-        app:layout_constraintTop_toBottomOf="@id/chat_title"
-        tools:text="@string/chat_convo_cost"
-        android:visibility="gone"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_recyclerview"
@@ -123,6 +111,20 @@
             app:elevation="@dimen/default_button_elevation"
             app:layout_constraintBottom_toTopOf="@id/chat_input_layout"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/chat_cost"
+            style="@style/fontSmaller_italic"
+            android:textSize="12sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:paddingStart="@dimen/default_padding"
+            app:layout_constraintStart_toEndOf="@id/chat_config_fab"
+            app:layout_constraintEnd_toStartOf="@id/chat_send_fab"
+            app:layout_constraintBottom_toTopOf="@id/chat_input_layout"
+            tools:text="@string/chat_convo_cost"
+            android:visibility="visible"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/chat_input_layout"

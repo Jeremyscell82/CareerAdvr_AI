@@ -39,6 +39,8 @@ class ConfigModel {
 
     @Parcelize
     data class Prompt(
+        @SerializedName("id " )
+        val id: Int,
         @SerializedName("title")
         val title: String,
         @SerializedName("description")

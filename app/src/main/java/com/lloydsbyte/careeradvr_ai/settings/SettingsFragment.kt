@@ -93,6 +93,13 @@ class SettingsFragment : Fragment(), BottomSheetHelper.BottomsheetSelectionInter
                 bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
             }
 
+            //User Membership Management
+            settingsUserStatsTokensUsedSubtitle.text = resources.getString(R.string.settings_tokens_subtitle, StoredPref(requireActivity()).getTokenCount())
+            settingsUserStatsMembershipSubtitle.text = "FREE"
+            settingsUserStatsManageMembershipLayout.setOnClickListener {
+
+            }
+
             //App Settings
             settingsRateLayout.setOnClickListener {
                 Utilz.rateApp(requireActivity())
@@ -136,7 +143,8 @@ class SettingsFragment : Fragment(), BottomSheetHelper.BottomsheetSelectionInter
 //                    UserProfileHelper.updateUserStatus("FREE")
 //                    UserProfileHelper.updateDateLimit(UtilzDateHelper(UtilzDateHelper.DF_TIMEDATE).buildMillisDate())
 //                    UserProfileHelper.updateUsageLimit()
-                (requireActivity() as MainActivity).fireOffAd()
+//                (requireActivity() as MainActivity).fireOffAd()
+
             }
 
 

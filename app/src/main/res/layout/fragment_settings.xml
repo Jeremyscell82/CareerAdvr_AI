@@ -362,6 +362,172 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
+                <!-- USER STATS CARDVIEW -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/settings_user_stats_cardview"
+                    style="@style/cardviewSettingsStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginTop="@dimen/default_small_padding"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginBottom="@dimen/default_margin">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/settings_user_stats_title"
+                            style="@style/fontSmall_reg"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_margin"
+                            android:layout_marginTop="@dimen/default_margin"
+                            android:text="@string/settings_stats_title"
+                            android:layout_gravity="end"/>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/settings_user_stats_tokens_used_layout"
+                            style="@style/makeClickable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+
+                            <TextView
+                                android:id="@+id/settings_user_stats_tokens_used_title"
+                                style="@style/fontMedium_reg"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/default_margin"
+                                android:layout_marginTop="@dimen/default_margin"
+                                android:text="@string/settings_tokens_header"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/settings_user_stats_tokens_used_subtitle"
+                                style="@style/fontSmall_reg"
+                                android:text="@string/settings_tokens_subtitle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/default_double_margin"
+                                android:layout_marginEnd="@dimen/default_margin"
+                                android:layout_marginBottom="@dimen/default_margin"
+                                android:textColor="@color/secondary_text_color"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/settings_user_stats_tokens_used_title" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginStart="@dimen/default_margin"
+                                android:layout_marginTop="@dimen/default_padding"
+                                android:layout_marginEnd="@dimen/default_margin"
+                                android:alpha=".5"
+                                android:background="@color/secondary_text_color"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/settings_user_stats_tokens_used_subtitle"
+                                />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/settings_user_status_membership_status_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/makeClickable"
+                            >
+
+                            <TextView
+                                android:id="@+id/settings_user_stats_membership_title"
+                                style="@style/fontMedium_reg"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/default_margin"
+                                android:layout_marginTop="@dimen/default_margin"
+                                android:text="@string/settings_membership_status"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/settings_user_stats_membership_subtitle"
+                                style="@style/fontSmall_reg"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/default_double_margin"
+                                android:layout_marginEnd="@dimen/default_margin"
+                                android:layout_marginBottom="@dimen/default_margin"
+                                android:text="Free"
+                                android:textColor="@color/secondary_text_color"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/settings_user_stats_membership_title"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginStart="@dimen/default_margin"
+                                android:layout_marginTop="@dimen/default_padding"
+                                android:layout_marginEnd="@dimen/default_margin"
+                                android:alpha=".5"
+                                android:background="@color/secondary_text_color"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/settings_user_stats_membership_subtitle"
+                                />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/settings_user_stats_manage_membership_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/makeClickable"
+                            >
+
+                            <TextView
+                                android:id="@+id/settings_user_stats_membership_manage_title"
+                                style="@style/fontMedium_reg"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/default_margin"
+                                android:layout_marginTop="@dimen/default_margin"
+                                android:text="@string/settings_membership_manage"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/settings_user_stats_membership_manage_subtitle"
+                                style="@style/fontSmall_reg"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/default_double_margin"
+                                android:layout_marginEnd="@dimen/default_margin"
+                                android:layout_marginBottom="@dimen/default_margin"
+                                android:text="SUBSCRIBE"
+                                android:textColor="@color/secondary_text_color"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/settings_user_stats_membership_manage_title"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
                 <!-- APP CARDVIEW -->
                 <androidx.cardview.widget.CardView
                     style="@style/cardviewSettingsStyle"
@@ -376,6 +542,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/settings_app_title"
+                            style="@style/fontSmall_reg"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_margin"
+                            android:layout_marginTop="@dimen/default_margin"
+                            android:text="@string/settings_about_section"
+                            android:layout_gravity="end"/>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/settings_rate_layout"

@@ -37,6 +37,7 @@ import com.lloydsbyte.core.gcm.PushNotificationController
 import com.lloydsbyte.core.permissions.PermissionCheck
 import com.lloydsbyte.core.permissions.PermissionCheck.Companion.showSendToSettingsDialog
 import com.lloydsbyte.careeradvr_ai.utilz.GAccountHelper
+import com.lloydsbyte.careeradvr_ai.utilz.GptTokenController
 import com.lloydsbyte.careeradvr_ai.utilz.IAP_Helper
 import com.lloydsbyte.core.custombottomsheet.ForceUpdateBottomsheet
 import com.lloydsbyte.core.custombottomsheet.VersionBottomsheet
@@ -98,8 +99,9 @@ open class MainActivity : IAP_Helper() {
         setContentView(binding.root)
         FirebaseApp.initializeApp(this)
 //        setupNavBar()
-        preparePermissions()
+
 //        initializeBilling()//Todo JL remove
+        preparePermissions()
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_controller) as NavHostFragment
@@ -366,7 +368,7 @@ open class MainActivity : IAP_Helper() {
 
     override fun onResume() {
         super.onResume()
-
+        GptTokenController().shouldResetTokens(this)
         initializeAds()
         
         //If one wants to handle the permission request, here is where one can do so
@@ -376,6 +378,8 @@ open class MainActivity : IAP_Helper() {
             locationPermissionDenied = true
         }
         locationPermissionRequested = false
+
+
 
     }
 

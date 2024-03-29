@@ -170,8 +170,7 @@ Lower values for temperature result in more consistent outputs, while higher val
 
 
 
-    <string name="settings_tokens_header">Tokens Used (for testing)</string>
-    <string name="settings_tokens_subtitle">Tokens Used %s</string>
+
 
     <string name="settings_stream">Stream</string>
     <string name="settings_stream_subtitle">Continuous Conversations</string>
@@ -185,6 +184,22 @@ Lower values for temperature result in more consistent outputs, while higher val
 
     <string name="settings_contact_report">Report an issue</string>
 
+    <string name="settings_stats_title">User Stats</string>
+    <string name="settings_stats_tokens_used">Tokens Used</string>
+    <string name="settings_tokens_header">Tokens Used Today</string>
+    <string name="settings_tokens_subtitle">%d tokens</string>
+    <string name="settings_membership_status">Membership Status</string>
+    <string-array name="settings_membership_status">
+        <item>Free</item>
+        <item>Subscribed</item>
+    </string-array>
+    <string name="settings_membership_manage">Manage Membership</string>
+    <string-array name="settings_membership_manage">
+        <item>Cancel</item>
+        <item>Subscribe</item>
+    </string-array>
+
+    <string name="settings_about_section">About</string>
     <string name="settings_debug_panel">Debug Panel</string>
     <string name="settings_debug_panel_subtitle">Report a bug</string>
     <string name="settings_debug_tokens">Add Tokens</string>

@@ -24,6 +24,7 @@
   "ama_prompt": "You are a sweet and kind experienced Career Advisor named Alyssa, introduce yourself and be sure to greet the client by their name before you start. Do not use any inappropriate language and ensure them you are not a replacement for a career advisor. Your job is to provide free but accurate information by asking questions then offering advice or guidance based on the information provided. Make sure you only respond with one question at a time and keep the answers short and easy to understand. Be sure to ask how long they have been in the field and take their age into consideration.",
   "prompt_list": [
     {
+      "id": 0,
       "title": "Employment History Generator",
       "description": "Have AI generate your bullet points about your roles to have a greater edge over your competition.",
       "instructions": "Starting from the most recent employment describe your daily tasks and what accomplishments you have completed while working at this company. Provide the AI with one job history at a time.",
@@ -31,6 +32,7 @@
       "paywall": false
     },
     {
+      "id": 1,
       "title": "Resume Objective Tuner",
       "description": "Have AI tune your resume's objective to fit a specific role.",
       "instructions": "After introducing yourself (provide your job title and years of experience), give the AI the job description for the job you are applying for. After a response, provide the AI with your current objective from your resume. It will then fine tune your objective for you.",
@@ -38,6 +40,7 @@
       "paywall": false
     },
     {
+      "id": 2,
       "title": "Resume Objective Creator",
       "description": "Have AI create your resume's objective to compete with the professionally created resumes.",
       "instructions": "Provide the AI with some basic information about you, like your job title (or title you will be pursuing) and years of experience in this role. Sit back and watch it create the ultimate objective for your resume.",
@@ -45,6 +48,7 @@
       "paywall": false
     },
     {
+      "id": 3,
       "title": "Email/Cover Letter Generator",
       "description": "Have AI create an email or cover letter to send to an employer.",
       "instructions": "Inform the AI that you would like a cover letter or email generated, also inform them about the content of the letter or even provide the job description to fine tune the letter to the position.",
@@ -52,6 +56,7 @@
       "paywall": false
     },
     {
+      "id": 4,
       "title": "Interview Tips",
       "description": "Personalized interview tips to improve your odds in your next interview.",
       "instructions": "Provide the AI with the job description you will be interviewing for, as well as the company name and job title. Inform the AI of how many years of experience you have for this role to properly provide you with interview tips.",
@@ -59,6 +64,7 @@
       "paywall": false
     },
     {
+      "id": 5,
       "title": "Mock Interview",
       "description": "Provide some information like the job title, description and your objective and get interviewed by AI.",
       "instructions": "Provide the AI with the job title and it's description you are applying for. Then provide the AI with the names and titles of your last 2 employers . Finally provide the AI with your resume's objective, once the Ai has all the information it needs it will inform you it is ready to begin the interview.",
@@ -66,6 +72,7 @@
       "paywall": false
     },
     {
+      "id": 6,
       "title": "Career Advice",
       "description": "Ask an AI powered career advisor anything you want in regards to your career.",
       "instructions": "",

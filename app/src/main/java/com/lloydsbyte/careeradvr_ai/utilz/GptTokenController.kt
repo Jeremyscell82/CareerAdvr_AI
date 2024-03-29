@@ -1,6 +1,7 @@
 package com.lloydsbyte.careeradvr_ai.utilz
 
 import android.content.Context
+import com.lloydsbyte.careeradvr_ai.analytics.Analytix
 import com.lloydsbyte.core.utilz.StoredPref
 import com.lloydsbyte.core.utilz.UtilzDateHelper
 
@@ -12,7 +13,7 @@ class GptTokenController {
     private var showDoubleAds: Boolean = true
     private var adsShown: Int = 0
     private val costPerAd: Int = 300
-    private val maxCostLimit: Int = 10000
+    private val maxCostLimit: Int = 4000
 
     fun adsShown(): Int {
         return adsShown
@@ -46,7 +47,11 @@ class GptTokenController {
         val currentDate = UtilzDateHelper(UtilzDateHelper.DF_CAL).buildStrDate()
         val lastUsedDate = storedPref.getTokenLastUsedDate()
          val reset = currentDate != lastUsedDate
-        if (reset)storedPref.updateTokenLastUsedDate(UtilzDateHelper(UtilzDateHelper.DF_CAL).buildStrDate())
+        if (reset){
+            Analytix().reportTokenCount(context, storedPref.getTokenCount())
+            storedPref.updateTokenLastUsedDate(UtilzDateHelper(UtilzDateHelper.DF_CAL).buildStrDate())
+            storedPref.updateTokenCount(0)
+        }
         return reset
     }
 
