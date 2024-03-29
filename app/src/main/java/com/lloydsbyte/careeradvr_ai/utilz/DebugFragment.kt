@@ -152,17 +152,6 @@ class DebugFragment : Fragment(), CountryInterface, DatabaseInterface, GptModelI
     }
 
     /** CORE FUNCTIONALITY TESTS **/
-    private fun testLocation() {
-        //Use this button to load up all core components
-        if (PermissionCheck.isLocationGranted(requireActivity())) {
-            addLog("Permission for location was granted ... checking for location")
-            addLog("This could take up to a minute. Be patient")
-            LocationController(requireActivity(), this).getLocationInfo(Runnable { CustomDialogs.snackbar(binding.root, "You said no :( ") })
-        } else {
-            addLog("Granting permission for location\n...look for the result in a snackbar.\nThen press location again")
-            (requireActivity() as com.lloydsbyte.careeradvr_ai.MainActivity).requestLocationPermissionDialog()
-        }
-    }
 
     private fun testCameraPermission() {
         if (PermissionCheck.isCameraGranted(requireActivity())){
@@ -172,15 +161,7 @@ class DebugFragment : Fragment(), CountryInterface, DatabaseInterface, GptModelI
             PermissionCheck.requestPermission(requireActivity(), Manifest.permission.CAMERA, false) //permissionDenied should be a value stored to help the user go to settings once it has been denied
         }
     }
-    private fun testGCM() {
-        //Test push notifications from Google Cloud Messenger
-        if (PushNotificationController().hasPermissionsBeenApproved(requireActivity())) {
-            addLog("Permission for GCM has been approved already")
-        } else {
-            addLog("Requesting Permission for GCM")
-            (requireActivity() as com.lloydsbyte.careeradvr_ai.MainActivity).requestPushNotificationPermission()
-        }
-    }
+
 
     private fun testOutAds() {
         addLog("Testing ads")

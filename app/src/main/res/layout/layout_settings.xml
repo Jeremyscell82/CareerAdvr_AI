@@ -524,7 +524,7 @@
                         <TextView
                             android:id="@+id/settings_debug_tokens_subtitle"
                             style="@style/fontSmall_reg"
-                            android:text="@string/settings_tokens_subtitle"
+                            android:text="@string/settings_chat_tokens_subtitle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/default_double_margin"

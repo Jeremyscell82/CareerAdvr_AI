@@ -16,10 +16,8 @@ class NetworkConstants {
         const val imageGptEndpoint = "images/generations"
         //Default Values for Stored Preferences (Will be able to override in future versions)
         const val temperature: Double = 0.3
-        const val default_gpt_model = "gpt-3.5-turbo-1106"
-        const val gpt_4_turbo = "gpt-4-1106-preview"
+        const val gpt_4_turbo = "gpt-4-turbo-preview"
         const val gpt_4 = "gpt-4"
-        const val gpt_3 = "gpt-3.5-turbo-1106"
 
     }
 }

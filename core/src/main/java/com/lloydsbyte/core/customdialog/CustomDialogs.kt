@@ -15,7 +15,10 @@ import com.google.android.material.snackbar.Snackbar
 class CustomDialogs {
     companion object {
 
-        //* New Custom Dialogs How to Use Example**/
+        fun launchInfoDialog(sfm: FragmentManager, title: String, message: String, posBtnTxt: String) {
+            launchDialog(sfm, title, message, posBtnTxt, null, null, null, true)
+        }
+
         fun launchDialog(sfm: FragmentManager, title: String, message: String, posText: String, negText: String?, okRun: Runnable?, cancelRun: Runnable?, cancelable: Boolean) {
             val dialogFragment = CustomDialogFragment(CustomDialogModel(title = title, message = message, okBtn = posText, cancelBtn = negText, okRunnable = okRun, cancelRunnable = cancelRun, cancelable = cancelable))
             dialogFragment.show(sfm, dialogFragment.tag)

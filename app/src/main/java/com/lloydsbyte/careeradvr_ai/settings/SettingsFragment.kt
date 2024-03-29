@@ -20,6 +20,7 @@ import com.lloydsbyte.core.selection_bottomsheet.BottomSheetHelper
 import com.lloydsbyte.core.utilz.StoredPref
 import com.lloydsbyte.core.utilz.Utilz
 import com.lloydsbyte.core.utilz.UtilzSendItHelper
+import com.lloydsbyte.network.NetworkConstants
 
 /**
  * This is a pre designed settings fragment, comes wired with goodies
@@ -94,11 +95,35 @@ class SettingsFragment : Fragment(), BottomSheetHelper.BottomsheetSelectionInter
             }
 
             //User Membership Management
-            settingsUserStatsTokensUsedSubtitle.text = resources.getString(R.string.settings_tokens_subtitle, StoredPref(requireActivity()).getTokenCount())
-            settingsUserStatsMembershipSubtitle.text = StoredPref(requireActivity()).getMembershipStatus()
+            settingsUserStatsMembershipSubtitle.text = UserProfileHelper.getUserMembershipName(requireActivity())
             settingsUserStatsManageMembershipLayout.setOnClickListener {
-                findNavController().navigate(R.id.action_settingsFragment_to_purchaseFragment)
+                //If subscribed send to settings
+                if (UserProfileHelper.isUserSubscribed(requireActivity())){
+                    (requireActivity() as MainActivity).openSubscriptionsPage()
+                } else {
+                    findNavController().navigate(R.id.action_settingsFragment_to_purchaseFragment)
+                }
+
             }
+
+
+            //Chat Settings
+            if (!UserProfileHelper.isUserSubscribed(requireActivity())){
+                //The preview switch has to be disabled and set the layout to click
+                settingsChatSwitch.isEnabled = false
+                settingsChatSwitchButton.visibility = View.VISIBLE
+                settingsChatSwitchButton.setOnClickListener {
+                    CustomDialogs.launchInfoDialog(requireActivity().supportFragmentManager, resources.getString(R.string.dialog_na_free_title), resources.getString(R.string.dialog_na_free_body), resources.getString(
+                        R.string.dialog_ok))
+                }
+            }
+
+            settingsChatSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+                StoredPref(requireActivity()).setGpt4TurboValue(isChecked)
+            }
+            settingsChatSwitch.isChecked = StoredPref(requireActivity()).useGpt4Turbo()
+
+            settingsChatTokenSubtitle.text = resources.getString(R.string.settings_chat_tokens_subtitle, StoredPref(requireActivity()).getTokenCount())
 
             //App Settings
             settingsRateLayout.setOnClickListener {
@@ -178,5 +203,10 @@ class SettingsFragment : Fragment(), BottomSheetHelper.BottomsheetSelectionInter
         //Not used
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        binding.settingsUserStatsMembershipSubtitle.text = UserProfileHelper.getUserMembershipName(requireActivity())
+    }
 
 }

@@ -102,7 +102,6 @@ open class MainActivity : IAP_Helper() {
 //        setupNavBar()
 
 //        initializeBilling()//Todo JL remove
-        preparePermissions()
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_controller) as NavHostFragment
@@ -154,63 +153,6 @@ open class MainActivity : IAP_Helper() {
 //        }
 //    }
 
-
-    /** LOCATION PERMISSION CODE **/
-    private fun preparePermissions() {
-        //Setup Location Permissions
-        locationPermissionRequest =
-            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-
-                when {
-                    permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
-                        //Fine location has been granted
-                        com.lloydsbyte.careeradvr_ai.MainActivity.Companion.permissionType =
-                            "Fine location"
-                    }
-
-                    permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
-                        //Approximate location has been granted
-                        com.lloydsbyte.careeradvr_ai.MainActivity.Companion.permissionType =
-                            "Coarse location"
-                    }
-
-                    else -> {
-                        //Permission was denied, show the dialog and send to settings
-                        if (locationPermissionDenied) {
-                            showSendToSettingsDialog(
-                                this,
-                                resources.getString(R.string.permissions_dialog_title),
-                                resources.getString(R.string.location_permission_dialog_message)
-                            )
-                        }
-                    }
-                }
-                ErrorController.logStatus("JL_ user selected : $permissionType")
-            }
-    }
-
-    fun requestLocationPermissionDialog() {
-        CustomDialogs.launchDialog(
-            sfm = supportFragmentManager,
-            title = resources.getString(R.string.location_dialog_title),
-            message = resources.getString(R.string.location_dialog_message),
-            posText = resources.getString(R.string.location_dialog_pos),
-            negText = resources.getString(R.string.location_dialog_neg),
-            okRun = { requestLocationPermission() },
-            cancelRun = null,
-            true
-        )
-    }
-
-    private fun requestLocationPermission() {
-        locationPermissionRequested = true
-        locationPermissionRequest.launch(
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-        )
-    }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun requestPushNotificationPermission() {
@@ -373,17 +315,6 @@ open class MainActivity : IAP_Helper() {
         GptTokenController().shouldResetTokens(this)
         initializeAds()
         initializeBilling()
-        
-        //If one wants to handle the permission request, here is where one can do so
-        if (locationPermissionRequested && PermissionCheck.isLocationGranted(this)) {
-            CustomDialogs.snackbar(binding.root, "Location Permission Granted")
-        } else if (locationPermissionRequested) {
-            locationPermissionDenied = true
-        }
-        locationPermissionRequested = false
-
-
-
     }
 
 

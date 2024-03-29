@@ -93,24 +93,22 @@ class Gpt_Helper {
     fun convertSelectedModel(itemSelected: Int) : String {
         return when(itemSelected){
             //Gpt 3 Turbo
-            0 -> NetworkConstants.gpt_3
             //Gpt 4
             1 -> NetworkConstants.gpt_4
             //Gpt 4 Turbo
             2 -> NetworkConstants.gpt_4_turbo
-            else -> NetworkConstants.gpt_3
+            else -> NetworkConstants.gpt_4
         }
     }
 
     fun convertModelForLegibility(modelName: String, items: List<String>): String {
         return when(modelName){
             //Gpt 3 Turbo
-            NetworkConstants.gpt_3 -> items[0]
             //Gpt 4
             NetworkConstants.gpt_4 -> items[1]
             //Gpt 4 Turbo
             NetworkConstants.gpt_4_turbo -> items[2]
-            else -> NetworkConstants.gpt_3
+            else -> NetworkConstants.gpt_4
         }
     }
 

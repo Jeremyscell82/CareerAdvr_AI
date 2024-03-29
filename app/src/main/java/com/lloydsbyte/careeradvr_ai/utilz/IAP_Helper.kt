@@ -22,8 +22,10 @@ import timber.log.Timber
 
 open class IAP_Helper: AppCompatActivity() {
 
-    private val sku_ad_free = "sku_ad_free_subscription"
-    private val sku_debug_sub = "sku_debug_subscription"
+    companion object {
+        val sku_ad_free = "sku_ad_free_subscription"
+        val sku_debug_sub = "sku_debug_subscription"
+    }
 
     /** IN APP PURCHASE **/
     var productDetails: List<ProductDetails> = emptyList()
@@ -48,7 +50,7 @@ open class IAP_Helper: AppCompatActivity() {
                                     // Grant access to the subscription features.
                                     Toast.makeText(this, "User made a purchase!!", Toast.LENGTH_LONG).show()
                                     Timber.d("JL_ purchase was made")
-                                    StoredPref(this).setMembershipStatus("SUB")
+                                    StoredPref(this).setMembershipStatus(UserProfileHelper.statusSub)
                                     isSubAdFree = true
                                 } else {
                                     Toast.makeText(this, resources.getString(R.string.error_gone_wrong), Toast.LENGTH_LONG).show()
@@ -119,17 +121,17 @@ open class IAP_Helper: AppCompatActivity() {
 
 
     //Check Subscription Status
-    fun checkSubscriptionActive() {
+    private fun checkSubscriptionActive() {
 
         billingClient.queryPurchasesAsync(BillingClient.ProductType.SUBS) { billingResult, purchasesList ->
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                 for (purchase in purchasesList) {
                     purchase.products.map {
                         if (it == sku_ad_free) {
-                            StoredPref(this).setMembershipStatus("Subscribed")
+                            StoredPref(this).setMembershipStatus(UserProfileHelper.statusSub)
                             isSubAdFree = true
                         } else if (it == sku_debug_sub) {
-                            StoredPref(this).setMembershipStatus("Debug")
+                            StoredPref(this).setMembershipStatus(UserProfileHelper.statusDebug)
                         }
                     }
                 }

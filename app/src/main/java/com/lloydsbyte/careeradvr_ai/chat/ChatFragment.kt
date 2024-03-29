@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,6 +17,7 @@ import com.lloydsbyte.careeradvr_ai.analytics.Analytix
 import com.lloydsbyte.careeradvr_ai.databinding.FragmentChatBinding
 import com.lloydsbyte.careeradvr_ai.utilz.GptTokenController
 import com.lloydsbyte.careeradvr_ai.utilz.Gpt_Helper
+import com.lloydsbyte.careeradvr_ai.utilz.UserProfileHelper
 import com.lloydsbyte.chap_e.chat.menu.MenuDialogFragment
 import com.lloydsbyte.chap_e.chat.menu.MenuInterface
 import com.lloydsbyte.core.ErrorController
@@ -24,6 +26,7 @@ import com.lloydsbyte.core.custombottomsheet.ConfirmInterface
 import com.lloydsbyte.core.custombottomsheet.ErrorBottomsheet
 import com.lloydsbyte.core.customdialog.CustomDialogs
 import com.lloydsbyte.core.search_bottomsheet.BottomsheetSearchInterface
+import com.lloydsbyte.core.utilz.StoredPref
 import com.lloydsbyte.core.utilz.Utilz
 import com.lloydsbyte.core.utilz.UtilzSendItHelper
 import com.lloydsbyte.core.utilz.UtilzViewHelper
@@ -35,7 +38,6 @@ import com.lloydsbyte.network.NetworkConstants
 import com.lloydsbyte.network.NetworkController
 import com.lloydsbyte.network.interfaces.GptQuestionInterface
 import com.lloydsbyte.network.responses.ChatGptResponse
-import timber.log.Timber
 
 class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, BottomsheetSearchInterface,
     DatabaseInterface, ConfirmInterface {
@@ -44,6 +46,7 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         val PROMPT_TITLE: String = "PROMPT_TITLE"
         val PROMPT_KEY: String = "PROMPT_KEY"
         val PROMPT_INSTRUCTIONS = "PROMPT_INTSRUCTIONS"
+        val PROMPT_IS_INTERVIEW_MOCK = "PROMPT_INTERVIEW_MOCK"
     }
 
 
@@ -73,6 +76,9 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         viewModel.chatTitle = arguments?.getString(PROMPT_TITLE)?:getString(R.string.chat_basic_title)
         viewModel.systemPrompt = arguments?.getString(PROMPT_KEY)?:getString(R.string.chat_default_prompt)
         viewModel.instructions = arguments?.getString(PROMPT_INSTRUCTIONS)?:""
+        viewModel.isMockInterview = arguments?.getBoolean(PROMPT_IS_INTERVIEW_MOCK)?:false
+        viewModel.isUserSubscribed = UserProfileHelper.isUserSubscribed(requireActivity())
+
         return binding.root
     }
 
@@ -119,7 +125,12 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
             }
 
             chatSendFab.setOnClickListener {
-                askQuestion()
+                //In the event they reload and want to fire off one question, prevent it
+                if (!GptTokenController().hasReachedMax(requireActivity(), viewModel.convoCost, viewModel.isUserSubscribed)){
+                    askQuestion()
+                } else {
+                    maxLimitReached()
+                }
             }
             chatRecyclerview.apply {
                 adapter = chatAdapter
@@ -169,8 +180,8 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         dropKeyboard()
 
         (requireActivity() as MainActivity).showLoadingView(true)
-
-        val jsonPayload = Gpt_Helper().prepPayload(requireActivity(), NetworkConstants.gpt_4, viewModel.chatThread, systemPrompt)
+        val model = if (StoredPref(requireActivity()).useGpt4Turbo())NetworkConstants.gpt_4_turbo else NetworkConstants.gpt_4
+        val jsonPayload = Gpt_Helper().prepPayload(requireActivity(), model, viewModel.chatThread, systemPrompt)
         val key = "${NetworkConstants.ai_key}${(requireActivity() as MainActivity).getSecretKey()}"
         networkController.chatGptRequest(
             this, key, jsonPayload
@@ -182,9 +193,9 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         binding.chatRecyclerview.scrollToPosition(viewModel.chatThread.size-1)
 
         //Checks based off current convoCost
-        if (adHelper.shouldShowAds(viewModel.convoCost)){
+        if (adHelper.shouldShowAds( viewModel.convoCost)){
             //Show ad
-            (requireActivity() as MainActivity).fireOffAd()
+            if(!UserProfileHelper.isUserSubscribed(requireActivity()))(requireActivity() as MainActivity).fireOffAd()
         }
     }
 
@@ -210,8 +221,11 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         binding.chatRecyclerview.scrollToPosition(viewModel.chatThread.size)
         viewModel.chatThread.add(chatModel)
         binding.chatMenuFab.show()
-        
-        if (GptTokenController().hasReachedMax(viewModel.convoCost))maxLimitReached()
+
+        //Check if limit has been reached, if in mock interview override to allow the user to finish.
+        if (hasHitLimit(viewModel.isMockInterview)){
+            maxLimitReached()
+        }
     }
 
     override fun onNetworkError(error: Throwable) {
@@ -220,7 +234,10 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         (requireActivity() as MainActivity).showLoadingView(false)
         binding.chatInputSectionLayout.visibility = View.GONE
     }
-    
+
+    private fun hasHitLimit(override: Boolean): Boolean {
+        return if (!override)GptTokenController().hasReachedMax(requireActivity(), viewModel.convoCost, viewModel.isUserSubscribed) else false
+    }
     private fun maxLimitReached() {
         //Remove input field layout
         binding.chatInputSectionLayout.visibility = View.GONE
@@ -228,9 +245,9 @@ class ChatFragment: Fragment(), GptQuestionInterface, MenuInterface, Bottomsheet
         //Display dialog
         CustomDialogs.launchDialog(
             sfm = requireActivity().supportFragmentManager,
-            title = "Limit Reached",
-            message = "You have reached the limit for a conversation on the free tier.",
-            posText = "OK",
+            title = resources.getString(R.string.error_max_reached_title),
+            message = resources.getString(R.string.error_max_reached_message),
+            posText = resources.getString(R.string.dialog_ok),
             negText = null,
             okRun = null,
             cancelRun = null,

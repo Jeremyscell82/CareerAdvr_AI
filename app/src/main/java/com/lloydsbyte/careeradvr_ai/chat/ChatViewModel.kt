@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import com.lloydsbyte.core.utilz.UtilzDateHelper
 import com.lloydsbyte.database.models.ChatHeaderModel
 import com.lloydsbyte.database.models.ChatModel
-import timber.log.Timber
 
 class ChatViewModel: ViewModel() {
 
     //For ALL
+    var isUserSubscribed: Boolean = false
     var chatTitle: String = ""
     var systemPrompt: String = ""
     var instructions: String = ""
@@ -19,6 +19,7 @@ class ChatViewModel: ViewModel() {
     var convoHeaderModel: ChatHeaderModel? = null
     var chatThread: MutableList<ChatModel> = mutableListOf()
     private var convoTimeStamp: Long = 0L
+    var isMockInterview: Boolean = false
 
     fun getConvoTimeStampId(): Long {
         if (convoTimeStamp == 0L){

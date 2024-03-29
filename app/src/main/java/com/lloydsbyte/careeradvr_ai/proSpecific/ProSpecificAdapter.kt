@@ -1,5 +1,6 @@
 package com.lloydsbyte.careeradvr_ai.proSpecific
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ class ProSpecificAdapter: RecyclerView.Adapter<ProSpecificAdapter.ProSpecificVie
     var onItemClicked: ((ConfigModel.Prompt) -> Unit)? = null
     var onItemLongClicked: ((ConfigModel.Prompt) -> Unit)? = null
 
+    @SuppressLint("NotifyDataSetChanged")
     fun initAdapter(animate: Boolean, recyclerView: RecyclerView, professions: List<ConfigModel.Prompt>) {
         adapterItems = professions
         if (animate){
@@ -27,10 +29,10 @@ class ProSpecificAdapter: RecyclerView.Adapter<ProSpecificAdapter.ProSpecificVie
                 R.anim.recyclerview_animation
             )
             recyclerView.layoutAnimation = anim
-            this.notifyDataSetChanged()
+            notifyDataSetChanged()
             recyclerView.scheduleLayoutAnimation()
         } else {
-            this.notifyDataSetChanged()
+            notifyDataSetChanged()
         }
 
     }
@@ -38,10 +40,9 @@ class ProSpecificAdapter: RecyclerView.Adapter<ProSpecificAdapter.ProSpecificVie
     inner class ProSpecificViewHolder(val view: ItemProSpecificBinding): RecyclerView.ViewHolder(view.root) {
         fun bind(prompt: ConfigModel.Prompt) {
             view.apply {
-                val locked: Boolean = checkStatus(root.context, prompt.payWall)
                 itemTitle.text = prompt.title
                 itemCardview.setOnClickListener {
-                    if (!locked)onItemClicked?.invoke(prompt)
+                    onItemClicked?.invoke(prompt)
                 }
                 itemCardview.setOnLongClickListener {
                     //Show more info dialog
@@ -49,7 +50,7 @@ class ProSpecificAdapter: RecyclerView.Adapter<ProSpecificAdapter.ProSpecificVie
                     false
                 }
 
-                itemLockLayout.visibility = if (locked) View.VISIBLE else View.GONE
+                itemLockLayout.visibility =  View.GONE
             }
         }
     }
@@ -59,7 +60,6 @@ class ProSpecificAdapter: RecyclerView.Adapter<ProSpecificAdapter.ProSpecificVie
         Timber.d("JL_ test locking system: $test")
         return when (test){
             UserProfileHelper.statusFree -> lockStatus
-            UserProfileHelper.statusPaid -> false
             UserProfileHelper.statusSub -> false
             UserProfileHelper.statusLife -> false
             else -> {lockStatus}

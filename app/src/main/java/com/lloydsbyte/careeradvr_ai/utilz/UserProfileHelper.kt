@@ -5,18 +5,18 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.lloydsbyte.careeradvr_ai.R
 import com.lloydsbyte.core.utilz.StoredPref
 import com.lloydsbyte.core.utilz.UtilzDateHelper
-import timber.log.Timber
 
 //To be used with Firebase Auth and Firebase Database
 class UserProfileHelper {
     companion object {
 
         val statusFree = "FREE"
-        val statusPaid = "PAID"
         val statusSub = "SUB"
         val statusLife = "LIFE"
+        val statusDebug = "DEBUG"
 
         val endpointStatus = "status"
         val endpointDateLimit = "dateLimit"
@@ -38,8 +38,20 @@ class UserProfileHelper {
             createProfileReference(endpointUsageLimit).setValue(usage)
         }
 
-        fun getUserStatus(context: Context): String {
-            return StoredPref(context).getMembershipStatus()
+        fun isUserSubscribed(context: Context): Boolean {
+            val membershipStatus = StoredPref(context).getMembershipStatus()
+            return membershipStatus == statusSub
+        }
+
+        fun getUserMembershipName(context: Context): String {
+            val membershipCode: String = StoredPref(context).getMembershipStatus()
+            val options = context.resources.getStringArray(R.array.settings_profile_memberships)
+            return when(membershipCode) {
+                statusDebug -> options[2]
+                statusSub -> options[1]
+                else -> options[0]
+            }
+
         }
 
         fun canAskQuestion(context: Context): Boolean {
@@ -47,14 +59,11 @@ class UserProfileHelper {
             val limit = StoredPref(context).getUsageLimit()
             var status = StoredPref(context).getMembershipStatus()
             var helper = UtilzDateHelper(UtilzDateHelper.DF_CAL)
-            Timber.d("JL_ data from stored pref: $date, $limit, $status")
             return when(status){
                 statusFree -> {
                     !helper.compareTodayDate(helper.convertDateFromMillis(date))
                 }
-                statusPaid -> {
-                    limit < 2 //|| !helper.compareTodayDate(helper.convertDateFromMillis(date))
-                }
+
                 statusSub -> {
                     limit < 3 //|| !helper.compareTodayDate(helper.convertDateFromMillis(date))
                 }
@@ -71,9 +80,7 @@ class UserProfileHelper {
                 statusFree -> {
                     true
                 }
-                statusPaid -> {
-                    true
-                }
+
                 statusSub -> {
                     true
                 }
@@ -91,9 +98,7 @@ class UserProfileHelper {
                 statusFree -> {
                     180000
                 }
-                statusPaid -> {
-                    300000
-                }
+
                 statusSub -> {
                     0
                 }

@@ -10,10 +10,10 @@ import com.lloydsbyte.core.utilz.UtilzDateHelper
  */
 class GptTokenController {
 
-    private var showDoubleAds: Boolean = true
     private var adsShown: Int = 0
-    private val costPerAd: Int = 300
-    private val maxCostLimit: Int = 4000
+    private val costPerAd: Int = 400
+    private val dailyLimit: Int = 8000
+    private val subscribedDailyLimit: Int = 15000
 
     fun adsShown(): Int {
         return adsShown
@@ -26,12 +26,12 @@ class GptTokenController {
         return showAd
     }
     
-    fun hasReachedMax(convoCost: Int): Boolean {
-        return convoCost > maxCostLimit
-    }
-    
-    fun showDoubleAd(): Boolean {
-        return showDoubleAds
+    fun hasReachedMax(context: Context, convoCost: Int, isSubscribed: Boolean): Boolean {
+        //Get stored tokens
+        val tokensUsedToday = StoredPref(context).getTokenCount()
+        val limit: Int = if (isSubscribed) subscribedDailyLimit else dailyLimit
+        val totalTokens = convoCost+tokensUsedToday
+        return totalTokens > limit
     }
 
     //Token controller to prevent token abuse

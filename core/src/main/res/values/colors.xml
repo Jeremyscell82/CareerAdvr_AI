@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Core colors used for Dialogs only-->
-    <color name="primary_text_color">#F1F1F1</color>
+    <color name="primary_text_color">#212121</color>
     <color name="secondary_text_color">#B7B7B7</color>
-    <color name="cardview_button_color">#2E2E2E</color>
-    <color name="cardview_background_color">#181818</color>
+    <color name="cardview_button_color">#35A4FB</color>
+    <color name="cardview_background_color">#DEDEDE</color>
     <color name="main_fab_color">#09A5FC</color>
     <color name="main_fab_text_color">#F1F1F1</color>
     <color name="main_ripple_color">#802258BB</color>

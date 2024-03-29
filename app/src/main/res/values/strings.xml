@@ -6,14 +6,16 @@
 
     <!-- VERSION -->
     <string name="version_title">What\'s new in version %s</string>
-    <string name="version_message">Everything!\nThis is the initial release of Career Advr. Enjoy and good luck on your job hunt, I hope this app helps you as it did for me!</string>
+    <string name="version_message"> Added Premium membership to Career Advisor! Elevate your career journey with Career Advisor Premium. Enjoy and good luck on your job hunt, I hope this app helps you as it did for me!</string>
 
     <!-- FORCE UPDATE -->
     <string name="force_update_title">A new update is available</string>
     <string name="force_update_message">Please update the app in order to continue to use it.</string>
 
     <!-- AI Prompts -->
-    <string name="prompt_intro">The clients name is %s, they are %s years old. </string>
+    <string name="prompt_intro">You are The clients name is %s, they are %s years old. </string>
+    <string name="prompt_mock_subscribed"> Once completed, ask the client if they would like to go one more time or if they feel ready for the interview. Inform them about the interview tips (a feature in the app).</string>
+    <string name="prompt_mock_not_subscribed"> Once completed, inform the client if they would like to continue they can all they need to do is enroll in a subscription. To enable this they need to go into the settings of the app and click on Manage Membership.</string>
 
     <!-- INTRO / ON BOARDING SECTION -->
     <string name="intro_title">Hello I\'m</string>
@@ -138,9 +140,23 @@ Lower values for temperature result in more consistent outputs, while higher val
     <string name="settings_profile_age">Age</string>
     <string name="settings_profile_age_subtitle">Change your age from %s</string>
     <string name="settings_profile_membership">Membership</string>
+    <string-array name="settings_profile_memberships">
+        <item>Free</item>
+        <item>Premium</item>
+        <item>Debug</item>
+    </string-array>
     <string name="settings_profile_status">Membership: %s</string>
     <string name="settings_profile_usage_limit">Usage Limit</string>
     <string name="settings_profile_usage_status">Used: %s</string>
+
+    <string name="settings_chat_title">Chat</string>
+    <string name="settings_chat_token_header">Tokens Used Today</string>
+    <string name="settings_chat_tokens_subtitle">%d tokens</string>
+    <string name="settings_chat_turbo">GPT4 Turbo</string>
+    <string name="settings_chat_turbo_switch">Use The Latest Preview Version</string>
+
+    <string name="settings_stats_title">User Stats</string>
+    <string name="settings_membership_status">Membership Status</string>
 
     <string name="settings_rate">Rate App</string>
     <string name="settings_rate_subtitle">Let the world know how you feel</string>
@@ -170,6 +186,16 @@ Lower values for temperature result in more consistent outputs, while higher val
 
 
 
+    <string name="purchase_title">Unlock Your Path to Career Excellence</string>
+    <string name="purchase_description">Elevate your career journey with Career Advisor Premium. Get personalized, AI-powered guidance to make your resume shine, ace interviews, and land your dream job faster.\n\n
+        **Unlimited Feedback** \nReceive unlimited, AI-driven feedback on your resumes, helping you stand out in every job application.\n
+        **Exclusive Mock Interviews**\nPractice makes perfect. Access unlimited mock interviews to prepare confidently for your real-life opportunities.\n
+        **Advanced AI Insights with Chat GPT**\nLeverage the latest Chat GPT AI models for real-time, cutting-edge career advice and interview preparation.\n
+        **Ad-Free Experience**\nEnjoy uninterrupted access to all features and resources without distractions.\n\n
+        Ready to take the next leap in your career? Subscribe now and unlock the full potential of Career Advisor.</string>
+    <string name="purchase_subscribe_today">Go Premium Today!</string>
+
+
 
 
     <string name="settings_stream">Stream</string>
@@ -184,15 +210,7 @@ Lower values for temperature result in more consistent outputs, while higher val
 
     <string name="settings_contact_report">Report an issue</string>
 
-    <string name="settings_stats_title">User Stats</string>
-    <string name="settings_stats_tokens_used">Tokens Used</string>
-    <string name="settings_tokens_header">Tokens Used Today</string>
-    <string name="settings_tokens_subtitle">%d tokens</string>
-    <string name="settings_membership_status">Membership Status</string>
-    <string-array name="settings_membership_status">
-        <item>Free</item>
-        <item>Subscribed</item>
-    </string-array>
+
     <string name="settings_membership_manage">Manage Membership</string>
     <string-array name="settings_membership_manage">
         <item>Cancel</item>
@@ -211,10 +229,17 @@ Lower values for temperature result in more consistent outputs, while higher val
     <string name="settings_debug_clear_app_subtitle">Erase app and restart</string>
 
 
+    <!-- DIALOGS -->
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_na_free_title">Not available</string>
+    <string name="dialog_na_free_body">This feature is only available to Premium users. Subscribe today to test out the latest from OpenAI\'s ChatGPT</string>
+
 
 
 
     <!--====================== ERROR MESSAGES ===========================-->
+    <string name="error_max_reached_title">Limit Reached</string>
+    <string name="error_max_reached_message">You have reached the limit for a conversation on the free tier. Subscribe to increase your daily limit and much more, check it out in settings.</string>
     <string name="error_chat_response">Out to lunch, please try again later. (ERROR:109)</string>
     <string name="error_gone_wrong">Something terrible  happened back here, try again later.</string>
     <string name="error_changed_mind">You changed your mind, tell us why if you can.</string>

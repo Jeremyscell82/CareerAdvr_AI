@@ -55,25 +55,27 @@ class ProSpecificFragment : Fragment() {
                     Analytix().reportProUsed(requireActivity().applicationContext, it.id)
                     val bundle = Bundle()
                     bundle.putString(ChatFragment.PROMPT_TITLE, it.title)
-                    bundle.putString(ChatFragment.PROMPT_KEY,prepPrompt(it.title, it.systemPrompt))
+                    bundle.putString(ChatFragment.PROMPT_KEY,prepPrompt(it.title, it.systemPrompt, it.id == 5))
                     bundle.putString(ChatFragment.PROMPT_INSTRUCTIONS, it.instructions)
+                    bundle.putBoolean(ChatFragment.PROMPT_IS_INTERVIEW_MOCK, it.id == 5)
                     findNavController().navigate(R.id.action_proFragment_to_chatFragment, bundle)
                 }
                 proAdapter.onItemLongClicked = {
-                    val description: String = if (it.description.isEmpty())"To be determined soon" else it.description
+                    val description: String = it.description.ifEmpty { "To be determined soon" }
                     val bottomsheet = MoreInfoBottomSheet.createInstance(it.title,description)
                     bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
                 }
-                Timber.d("JL_ professions is ${promptsList.size} full")
                 if (proAdapter.adapterItems.isEmpty()) loadAdapter()
             }
         }
     }
 
-    private fun prepPrompt(title: String, prompt: String): String {
+    private fun prepPrompt(title: String, prompt: String, interview: Boolean): String {
         //This function will combine the users name, the default prompt and the additional prompt
+        var promptPrepped = prompt
         val defaultPrompt = (requireActivity() as MainActivity).getDefaultPrompt()
-        return Gpt_Helper().promptCreator(requireActivity(), defaultPrompt, title, prompt)
+        if (interview)promptPrepped = prompt+resources.getString(R.string.prompt_mock_subscribed) else prompt+resources.getString(R.string.prompt_mock_not_subscribed)
+        return Gpt_Helper().promptCreator(requireActivity(), defaultPrompt, title, promptPrepped)
     }
     private fun loadAdapter() {
         if (promptsList.isEmpty()) {

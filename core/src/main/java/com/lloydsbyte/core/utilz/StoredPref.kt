@@ -93,7 +93,7 @@ class StoredPref(
     }
 
     fun getTokenLastUsedDate(): String {
-        return readString(GPT_TOKEN_LAST_USED_DATE, "")
+        return readString(GPT_TOKEN_LAST_USED_DATE, "01/01/1979")
     }
 
     /** Ads **/
@@ -196,14 +196,6 @@ class StoredPref(
 
     fun setGpt4TurboValue(value: Boolean) {
         writeBool(GPT_4_MODEL_PREVIEW, value)
-    }
-
-    fun getChatModel(): String {
-        return readString(GPT_MODEL, NetworkConstants.default_gpt_model)
-    }
-
-    fun setChatModel(model: String) {
-        writeString(GPT_MODEL, model)
     }
 
     fun chatTemp(): Double {
