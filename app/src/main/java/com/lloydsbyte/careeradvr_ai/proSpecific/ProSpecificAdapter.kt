@@ -55,7 +55,7 @@ class ProSpecificAdapter: RecyclerView.Adapter<ProSpecificAdapter.ProSpecificVie
     }
 
     private fun checkStatus(context: Context, lockStatus: Boolean): Boolean {
-        val test = StoredPref(context).getProfileStatus()
+        val test = StoredPref(context).getMembershipStatus()
         Timber.d("JL_ test locking system: $test")
         return when (test){
             UserProfileHelper.statusFree -> lockStatus

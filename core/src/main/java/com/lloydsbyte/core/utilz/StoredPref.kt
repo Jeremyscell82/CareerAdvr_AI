@@ -134,11 +134,11 @@ class StoredPref(
     }
 
     /** PROFILE CALLS **/
-    fun getProfileStatus(): String {
+    fun getMembershipStatus(): String {
         return readString(PROFILE_STATUS, "FREE")
     }
 
-    fun setProfileStatus(status: String) {
+    fun setMembershipStatus(status: String) {
         writeString(PROFILE_STATUS, status)
     }
 

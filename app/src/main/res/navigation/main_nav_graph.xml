@@ -82,7 +82,17 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.lloydsbyte.careeradvr_ai.settings.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="SettingsFragment" >
+
+        <action
+            android:id="@+id/action_settingsFragment_to_purchaseFragment"
+            app:destination="@id/purchaseFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/fade_out"/>
+
+    </fragment>
 
 
 
@@ -107,7 +117,10 @@
         android:id="@+id/historyConvoFragment"
         android:name="com.lloydsbyte.careeradvr_ai.history.HistoryConversationFragment"
         android:label="HistoryPromptFragment" />
-
+    <fragment
+        android:id="@+id/purchaseFragment"
+        android:name="com.lloydsbyte.careeradvr_ai.purchase_example.PurchaseFragment"
+        android:label="PurchaseFragment" />
 
 
 </navigation>

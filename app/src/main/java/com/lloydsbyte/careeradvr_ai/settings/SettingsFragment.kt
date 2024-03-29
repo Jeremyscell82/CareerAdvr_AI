@@ -95,9 +95,9 @@ class SettingsFragment : Fragment(), BottomSheetHelper.BottomsheetSelectionInter
 
             //User Membership Management
             settingsUserStatsTokensUsedSubtitle.text = resources.getString(R.string.settings_tokens_subtitle, StoredPref(requireActivity()).getTokenCount())
-            settingsUserStatsMembershipSubtitle.text = "FREE"
+            settingsUserStatsMembershipSubtitle.text = StoredPref(requireActivity()).getMembershipStatus()
             settingsUserStatsManageMembershipLayout.setOnClickListener {
-
+                findNavController().navigate(R.id.action_settingsFragment_to_purchaseFragment)
             }
 
             //App Settings
@@ -144,64 +144,8 @@ class SettingsFragment : Fragment(), BottomSheetHelper.BottomsheetSelectionInter
 //                    UserProfileHelper.updateDateLimit(UtilzDateHelper(UtilzDateHelper.DF_TIMEDATE).buildMillisDate())
 //                    UserProfileHelper.updateUsageLimit()
 //                (requireActivity() as MainActivity).fireOffAd()
-
+                (requireActivity() as MainActivity).openSubscriptionsPage()
             }
-
-
-            //Tokens Total
-//            settingsTokensSubtitle.text = UtilzTokenHelper.calculateTotals(requireActivity()).toString()
-
-
-            /** ACCOUNT CARDVIEW **/
-//            settingsSigninLayout.setOnClickListener {
-//                //Todo Sign in logic here
-//                it.visibility = View.GONE
-//            }
-//            settingsPurchaseLayout.setOnClickListener {
-//                //Send to purhcase screen
-//                it.visibility = View.GONE
-//            }
-
-
-            //APP CARDVIEW
-//            settingsRateLayout.setOnClickListener {
-//                Utilz.rateApp(requireActivity())
-//            }
-//            settingsShareLayout.setOnClickListener {
-//                UtilzSendItHelper().shareApp(requireActivity())
-//            }
-//            settingsContactLayout.setOnClickListener {
-//                UtilzSendItHelper().contactDeveloper(requireActivity(), Utilz.getVersionName(requireActivity()))
-//            }
-//            settingsAboutLayout.setOnClickListener {
-//                val bottomsheet = SettingsAboutBottomsheet()
-//                bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
-//                //Or
-////                val bottomsheet = SettingsAboutAppBottomsheet()
-////                bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
-//            }
-
-
-            //DEBUG PANEL
-//            settingsDebugCardview.apply {
-//                visibility = View.VISIBLE//if (Utilz.isInDebugMode())View.VISIBLE else View.GONE
-//                settingsDebugLayout.setOnClickListener {
-//                    //Report bug
-//                    UtilzSendItHelper().reportBug(
-//                        requireActivity(),
-//                        resources.getString(R.string.settings_version, Utilz.getVersionName(requireActivity()), Utilz.getBuildNumber(requireActivity()))
-//                    )
-//                }
-//                settingsTokensAddLayout.setOnClickListener {
-//
-//                }
-//                settingsTokensClearLayout.setOnClickListener {
-//
-//                }
-//                settingsClearAppLayout.setOnClickListener {
-//
-//                }
-//            }
 
         }
     }
@@ -211,7 +155,7 @@ class SettingsFragment : Fragment(), BottomSheetHelper.BottomsheetSelectionInter
 
     override fun onSavePressed(itemSelected: BottomSheetHelper.BottomsheetModel) {
         UserProfileHelper.updateUserStatus(itemSelected.name)
-        StoredPref(requireActivity()).setProfileStatus(itemSelected.name)
+        StoredPref(requireActivity()).setMembershipStatus(itemSelected.name)
     }
 
     override fun onCancelPressed() {

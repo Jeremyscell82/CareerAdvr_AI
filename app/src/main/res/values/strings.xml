@@ -216,6 +216,8 @@ Lower values for temperature result in more consistent outputs, while higher val
 
     <!--====================== ERROR MESSAGES ===========================-->
     <string name="error_chat_response">Out to lunch, please try again later. (ERROR:109)</string>
+    <string name="error_gone_wrong">Something terrible  happened back here, try again later.</string>
+    <string name="error_changed_mind">You changed your mind, tell us why if you can.</string>
 
 
 

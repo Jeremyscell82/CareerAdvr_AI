@@ -11,7 +11,7 @@ class PurchaseAdapter: RecyclerView.Adapter<PurchaseAdapter.PurchaseViewHolder>(
     var adapteritems: List<ProductDetails> = emptyList()
     var itemClicked: ((ProductDetails)-> Unit)? = null
     fun initAdapter(items: List<ProductDetails>) {
-        adapteritems = items.sortedBy{ it.description.toInt() }
+        adapteritems = items
         notifyDataSetChanged()
     }
 

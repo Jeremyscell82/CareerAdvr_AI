@@ -39,13 +39,13 @@ class UserProfileHelper {
         }
 
         fun getUserStatus(context: Context): String {
-            return StoredPref(context).getProfileStatus()
+            return StoredPref(context).getMembershipStatus()
         }
 
         fun canAskQuestion(context: Context): Boolean {
             val date = StoredPref(context).getUsageDate()
             val limit = StoredPref(context).getUsageLimit()
-            var status = StoredPref(context).getProfileStatus()
+            var status = StoredPref(context).getMembershipStatus()
             var helper = UtilzDateHelper(UtilzDateHelper.DF_CAL)
             Timber.d("JL_ data from stored pref: $date, $limit, $status")
             return when(status){
@@ -66,7 +66,7 @@ class UserProfileHelper {
         }
 
         fun areWeRestricted(context: Context): Boolean {
-            var status = StoredPref(context).getProfileStatus()
+            var status = StoredPref(context).getMembershipStatus()
             return when(status){
                 statusFree -> {
                     true
@@ -86,7 +86,7 @@ class UserProfileHelper {
 
         fun getAdTimer(context: Context) : Long {
             //The shorter this value is the more ads the user will see
-            var status = StoredPref(context).getProfileStatus()
+            var status = StoredPref(context).getMembershipStatus()
             return when(status){
                 statusFree -> {
                     180000

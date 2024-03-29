@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -211,6 +212,7 @@ open class MainActivity : IAP_Helper() {
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun requestPushNotificationPermission() {
         //Ensure to ask the controller if user hasPermissionsBeenApproved() before calling this
         val runnable = Runnable {
@@ -370,6 +372,7 @@ open class MainActivity : IAP_Helper() {
         super.onResume()
         GptTokenController().shouldResetTokens(this)
         initializeAds()
+        initializeBilling()
         
         //If one wants to handle the permission request, here is where one can do so
         if (locationPermissionRequested && PermissionCheck.isLocationGranted(this)) {

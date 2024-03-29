@@ -1,21 +1,33 @@
 package com.lloydsbyte.careeradvr_ai.utilz
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.billingclient.api.AcknowledgePurchaseParams
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.ConsumeParams
 import com.android.billingclient.api.ProductDetails
+import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
+import com.lloydsbyte.careeradvr_ai.R
 import com.lloydsbyte.core.ErrorController
+import com.lloydsbyte.core.utilz.StoredPref
+import timber.log.Timber
 
 open class IAP_Helper: AppCompatActivity() {
 
+    private val sku_ad_free = "sku_ad_free_subscription"
+    private val sku_debug_sub = "sku_debug_subscription"
 
     /** IN APP PURCHASE **/
     var productDetails: List<ProductDetails> = emptyList()
+    var isSubAdFree: Boolean = false
     var consumableProduct: ProductDetails? = null
     private val purchasesUpdatedListener =
         PurchasesUpdatedListener { billingResult, purchases ->
@@ -23,14 +35,35 @@ open class IAP_Helper: AppCompatActivity() {
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
                 for (purchase in purchases) {
                     ErrorController.logStatus("Purchased this: ${purchase.products.first()}")
-                    consume(purchase.purchaseToken)
+
+                    if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
+                        // Acknowledge the purchase if it hasn't already been acknowledged.
+                        if (!purchase.isAcknowledged) {
+                            val acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder()
+                                .setPurchaseToken(purchase.purchaseToken)
+                                .build()
+                            billingClient.acknowledgePurchase(acknowledgePurchaseParams) { ackBillingResult ->
+                                if (ackBillingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                                    // Purchase acknowledged.
+                                    // Grant access to the subscription features.
+                                    Toast.makeText(this, "User made a purchase!!", Toast.LENGTH_LONG).show()
+                                    Timber.d("JL_ purchase was made")
+                                    StoredPref(this).setMembershipStatus("SUB")
+                                    isSubAdFree = true
+                                } else {
+                                    Toast.makeText(this, resources.getString(R.string.error_gone_wrong), Toast.LENGTH_LONG).show()
+                                }
+                            }
+                        }
+                    }
+//                    consume(purchase.purchaseToken)
                 }
             } else if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
                 // Handle an error caused by a user cancelling the purchase flow.
-
+                Toast.makeText(this, resources.getString(R.string.error_changed_mind), Toast.LENGTH_LONG).show()
             } else {
                 // Handle any other error codes.
-
+                Toast.makeText(this, resources.getString(R.string.error_gone_wrong), Toast.LENGTH_LONG).show()
                 ErrorController.logStatus("Error this: ${purchases?.first()?.products?.first()}")
             }
         }
@@ -48,7 +81,7 @@ open class IAP_Helper: AppCompatActivity() {
         billingClient.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {
                 if (billingResult.responseCode ==  BillingClient.BillingResponseCode.OK) {
-                    // The BillingClient is ready. You can query purchases here.
+                    // The BillingClient is ready. You can query now
                     queryForSkus()
                 }
             }
@@ -63,15 +96,11 @@ open class IAP_Helper: AppCompatActivity() {
         val productList = ArrayList<QueryProductDetailsParams.Product>()
         productList.addAll(listOf(
             QueryProductDetailsParams.Product.newBuilder()
-                .setProductId("NA")
-                .setProductType(BillingClient.ProductType.INAPP)
+                .setProductId(sku_ad_free)
+                .setProductType(BillingClient.ProductType.SUBS)
                 .build(),
             QueryProductDetailsParams.Product.newBuilder()
-                .setProductId("NA")
-                .setProductType(BillingClient.ProductType.INAPP)
-                .build(),
-            QueryProductDetailsParams.Product.newBuilder()
-                .setProductId("NA")
+                .setProductId(sku_debug_sub)
                 .setProductType(BillingClient.ProductType.SUBS)
                 .build()
         ))
@@ -84,9 +113,32 @@ open class IAP_Helper: AppCompatActivity() {
             // check billingResult
             // process returned productDetailsList
             productDetails = productDetailsList.toList()
-            ErrorController.logStatus("Results were: ${productDetailsList.size} and first item was ${productDetailsList.first().title}")
+            checkSubscriptionActive()
         }
     }
+
+
+    //Check Subscription Status
+    fun checkSubscriptionActive() {
+
+        billingClient.queryPurchasesAsync(BillingClient.ProductType.SUBS) { billingResult, purchasesList ->
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                for (purchase in purchasesList) {
+                    purchase.products.map {
+                        if (it == sku_ad_free) {
+                            StoredPref(this).setMembershipStatus("Subscribed")
+                            isSubAdFree = true
+                        } else if (it == sku_debug_sub) {
+                            StoredPref(this).setMembershipStatus("Debug")
+                        }
+                    }
+                }
+            } else {
+                // Handle error
+            }
+        }
+    }
+
 
     fun purchase(product: ProductDetails) {
         val productDetailsParamsList = listOf(
@@ -130,5 +182,20 @@ open class IAP_Helper: AppCompatActivity() {
         }
     }
 
+    fun openSubscriptionsPage() {
+        val packageName = packageName
+        try {
+            // Intent to open the subscription page for your app in the Google Play Store
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/account/subscriptions?package=$packageName")))
+        } catch (e: ActivityNotFoundException) {
+            // Fallback: Try to open the Google Play Store app at your app's main page if the subscriptions URL fails
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
+            } catch (fallbackException: ActivityNotFoundException) {
+                // If Google Play Store is not installed, open in web browser
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
+            }
+        }
+    }
 
 }

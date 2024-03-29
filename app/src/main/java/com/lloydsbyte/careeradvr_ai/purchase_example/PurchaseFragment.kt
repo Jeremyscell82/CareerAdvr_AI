@@ -13,7 +13,6 @@ import com.lloydsbyte.careeradvr_ai.databinding.FragmentPurchaseBinding
 class PurchaseFragment: Fragment() {
 
     lateinit var binding: FragmentPurchaseBinding
-    var tokenCount = 0
     lateinit var purchaseAdapter: PurchaseAdapter
 
     override fun onCreateView(

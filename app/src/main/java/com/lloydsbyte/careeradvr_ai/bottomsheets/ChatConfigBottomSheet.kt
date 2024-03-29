@@ -39,7 +39,7 @@ class ChatConfigBottomSheet: BottomSheetDialogFragment(),
                 dialog?.dismiss()
             }
             //Disable model selection if on Free account
-            val freeStatus: Boolean = StoredPref(requireActivity()).getProfileStatus() == UserProfileHelper.statusFree
+            val freeStatus: Boolean = StoredPref(requireActivity()).getMembershipStatus() == UserProfileHelper.statusFree
             settingsGptModelLayout.setOnClickListener {
                 if (freeStatus) {
                     //Inform user they can not change the model on this current status, they must upgrade
