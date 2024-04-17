@@ -1,7 +1,7 @@
 {
   "version": "2024.3",
   "readme": "This is a read me to explain any complications to the developer. Nothing complicated yet.",
-  "min_build": 1,
+  "min_build": 7,
   "secret_key": "3BlbkFJYXIkyDGzPBfNMaUQp702",
   "promo_banner": [
     {
